@@ -1,27 +1,30 @@
-#include <SFML/Graphics.hpp>
+#include "entity.h"
 
 const int win_width = 1400;
 const int win_height = 1000;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(win_width, win_height), "SFML works!");
-    sf::RectangleShape player(sf::Vector2f(100.f, 100.f));
-    player.setFillColor(sf::Color::Green);
-    player.setPosition(win_width / 2, win_height / 2);
+    RenderWindow window(VideoMode(win_width, win_height), "SFML works!");
+
+    Vector2f pos = Vector2f(win_width/2 , win_height/2);
+    Color color = Color::Green;
+    Vector2f size = Vector2f(100.f, 100.f);
+
+    Entity player(pos, size, color);
 
     while (window.isOpen())
     {
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            if (event.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape))
                 window.close();
         }
 
         window.clear();
 
-        window.draw(player);
+        player.draw(window);
 
         window.display();
     }
