@@ -8,12 +8,6 @@ Entity::Entity(Vector2f position, Vector2f size, Color color)
 	this->object.setPosition(position);
 }
 
-void Entity::draw(RenderWindow &wn) const
-{
-	wn.draw(this->object);
-}
-
-
 void Entity::move(Vector2i pos)
 {
 	Vector2f curr_pos = this->object.getPosition();
@@ -32,4 +26,9 @@ bool Entity::collide(Entity& other, int strictness)
 	FloatRect other_bounds = other.object.getGlobalBounds();
 
 	return this_bounds.intersects(other_bounds);
+}
+
+RectangleShape Entity::getRect() const
+{
+	return this->object;
 }

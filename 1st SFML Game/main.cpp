@@ -1,4 +1,5 @@
 #include "entity.h"
+#include "player.h"
 #include <iostream>
 
 const int win_width = 1400;
@@ -13,7 +14,7 @@ int main()
     Color color = Color::Green;
     Vector2f size = Vector2f(100.f, 100.f);
 
-    Entity player(pos, size, color);
+    Player player(pos, size, color);
 
     while (window.isOpen())
     {
@@ -22,12 +23,11 @@ int main()
         {
             if (event.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape))
                 window.close();
-
         }
 
         window.clear();
 
-        player.draw(window);
+        player.update(window);
 
         window.display();
     }
