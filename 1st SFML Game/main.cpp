@@ -1,11 +1,13 @@
 #include "entity.h"
+#include <iostream>
 
 const int win_width = 1400;
 const int win_height = 1000;
 
 int main()
 {
-    RenderWindow window(VideoMode(win_width, win_height), "SFML works!");
+    RenderWindow window(VideoMode(win_width, win_height), "Dodging Game");
+    window.setFramerateLimit(60);
  
     Vector2f pos = Vector2f(win_width/2, win_height/2);
     Color color = Color::Green;
@@ -21,10 +23,6 @@ int main()
             if (event.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape))
                 window.close();
 
-            if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Right)
-            {
-                player.move(Mouse::getPosition(window));
-            }
         }
 
         window.clear();

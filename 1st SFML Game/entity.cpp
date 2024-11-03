@@ -25,3 +25,11 @@ void Entity::move(Vector2i pos)
 
 	this->object.setPosition(new_x, new_y);
 }
+
+bool Entity::collide(Entity& other, int strictness)
+{
+	FloatRect this_bounds = this->object.getGlobalBounds();
+	FloatRect other_bounds = other.object.getGlobalBounds();
+
+	return this_bounds.intersects(other_bounds);
+}
