@@ -6,12 +6,12 @@ using namespace sf;
 class Entity
 {
 private: 
-	Vector2f position;
-	Vector2f size;
 	RectangleShape object;
+	int speed = 10;
 
 public:
 	Entity(Vector2f position, Vector2f size, Color color);
 	void draw(RenderWindow &wn) const;
+	void move(Vector2i pos);
 };
 
