@@ -1,12 +1,27 @@
 #include "player.h"
+#include <iostream>
 
 void Player::update(RenderWindow& wn)
 {
-	this->should_move = Mouse::isButtonPressed(Mouse::Right);//Use to check when the Mouse button is held down
-
-	if (this->should_move) //If the Mouse button is held down then move the player towards the mouse
+	if (Mouse::isButtonPressed(Mouse::Right))
 	{
-		this->move(Mouse::getPosition(wn));
+		this->target_pos = new Vector2i(Mouse::getPosition(wn));
+	}
+
+	if (this->target_pos)
+	{
+		Vector2f curr = this->getRect().getPosition();
+		bool reach_dest = (curr.x - this->target_pos->x < 1) && (curr.y - this->target_pos->y < 1);
+
+		if (!reach_dest)
+		{
+		this->move(*(this->target_pos));
+		}
+
+		else
+		{
+			this->target_pos = nullptr;
+		}
 	}
 
 	wn.draw(this->getRect());

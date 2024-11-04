@@ -1,6 +1,5 @@
 #include "entity.h"
 #include "player.h"
-#include <iostream>
 
 const int win_width = 1400;
 const int win_height = 1000;

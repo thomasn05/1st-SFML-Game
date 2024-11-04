@@ -7,7 +7,7 @@ class Player :
     using Entity::Entity;//Using the Entity Constructor
 
 private:
-    bool should_move = 0;
+    Vector2i *target_pos = nullptr;
 
 public:
     void update(RenderWindow& wn);
