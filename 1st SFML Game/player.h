@@ -15,6 +15,7 @@ private:
     int speed = MOVING_SPEED;
 
 public:
+    Player(Vector2f spawn) : Entity(spawn, size, color) {}
     void update(RenderWindow& wn);
     //TODO: Player abilities - shoot, dash, wall
 };
