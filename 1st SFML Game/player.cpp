@@ -8,6 +8,11 @@ void Player::update(RenderWindow& wn)
 		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Allocate a new Vector2i pointer pointing to a mouse position
 	}
 
+	if (Keyboard::isKeyPressed(Keyboard::E))
+	{
+		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Allocate a new Vector2i pointer pointing to a mouse position
+	}
+
 	if (this->target_pos)
 	{
 		Vector2f curr = this->getRect().getPosition(); //The curr player postion
@@ -15,7 +20,7 @@ void Player::update(RenderWindow& wn)
 
 		if (!reach_dest) //Keep moving if it hasn't reach its destination
 		{
-		this->move(*(this->target_pos));
+			this->move(*(this->target_pos), this->speed);
 		}
 
 		else //if it has set it to a nullptr so that it doesn't try to keep moving
@@ -23,6 +28,5 @@ void Player::update(RenderWindow& wn)
 			this->target_pos = nullptr;
 		}
 	}
-
 	wn.draw(this->getRect());
 }

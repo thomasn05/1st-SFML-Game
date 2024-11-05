@@ -8,7 +8,7 @@ Entity::Entity(Vector2f position, Vector2f size, Color color)
 	this->object.setPosition(position);
 }
 
-void Entity::move(Vector2i pos)
+void Entity::move(Vector2i pos, int speed)
 {
 	Vector2f curr_pos = this->object.getPosition();
 	int dx = curr_pos.x - pos.x; //Get their difference in x and y
