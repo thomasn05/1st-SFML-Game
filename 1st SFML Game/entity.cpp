@@ -8,16 +8,11 @@ Entity::Entity(Vector2f position, Vector2f size, Color color)
 	this->object.setPosition(position);
 }
 
-void Entity::move(Vector2i pos, int speed)
+void Entity::move(Vector2i target, int speed)
 {
-	Vector2f curr_pos = this->object.getPosition();
-	int dx = curr_pos.x - pos.x; //Get their difference in x and y
-	int dy = curr_pos.y - pos.y;
-	float angle = atan2(dy, dx); //Find theta
-	float new_x = curr_pos.x - speed * cos(angle); //Use trig to find how much to move in the x and y
-	float new_y = curr_pos.y - speed * sin(angle);
+	Vector2f new_pos = this->get_component(target, speed);
 
-	this->object.setPosition(new_x, new_y);
+	this->object.setPosition(new_pos);
 }
 
 bool Entity::collide(Entity& other) const
@@ -31,4 +26,17 @@ bool Entity::collide(Entity& other) const
 RectangleShape Entity::getRect() const
 {
 	return this->object;
+}
+
+Vector2f Entity::get_component(Vector2i target, int distance) const
+{
+	Vector2f curr_pos = this->object.getPosition();
+	float dx = curr_pos.x - target.x; //Get their difference in x and y
+	float dy = curr_pos.y - target.y;
+
+	float angle = atan2(dy, dx); //Find theta
+	float new_x = curr_pos.x - distance * cos(angle); //Use trig to find how much to move in the x and y
+	float new_y = curr_pos.y - distance * sin(angle);
+
+	return Vector2f(new_x, new_y);
 }

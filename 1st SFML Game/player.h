@@ -1,14 +1,18 @@
 #include "entity.h"
 
+const int MOVING_SPEED = 5;
+const int DASH_SPEED = 10;
+const int DASH_DISTANCE = 30;
+const Color color = Color::Green;
+const Vector2f size = Vector2f(25, 25);
+
 #pragma once
 class Player :
     public Entity
 {
-    using Entity::Entity;//Using the Entity Constructor
-
 private:
     Vector2i *target_pos = nullptr;
-    int speed = 5;
+    int speed = MOVING_SPEED;
 
 public:
     void update(RenderWindow& wn);

@@ -6,11 +6,13 @@ void Player::update(RenderWindow& wn)
 	if (Mouse::isButtonPressed(Mouse::Right))
 	{
 		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Allocate a new Vector2i pointer pointing to a mouse position
+		this->speed = MOVING_SPEED;
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::E))
 	{
-		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Allocate a new Vector2i pointer pointing to a mouse position
+		this->target_pos = new Vector2i(this->get_component(Mouse::getPosition(wn), DASH_DISTANCE)); //Allocate a new Vector2i pointer pointing to a mouse position
+		this->speed = DASH_SPEED;
 	}
 
 	if (this->target_pos)
@@ -26,6 +28,7 @@ void Player::update(RenderWindow& wn)
 		else //if it has set it to a nullptr so that it doesn't try to keep moving
 		{
 			this->target_pos = nullptr;
+			this->speed = MOVING_SPEED;
 		}
 	}
 	wn.draw(this->getRect());
