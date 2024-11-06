@@ -15,6 +15,12 @@ void Player::update(RenderWindow& wn)
 		this->speed = DASH_SPEED;
 	}
 
+	if (Keyboard::isKeyPressed(Keyboard::Q))
+	{
+		float angle = get_angle(this->getRect().getPosition(), Mouse::getPosition(wn));
+		this->shoot(angle);
+	}
+
 	if (this->target_pos)
 	{
 		Vector2f curr = this->getRect().getPosition(); //The curr player postion
@@ -32,4 +38,19 @@ void Player::update(RenderWindow& wn)
 		}
 	}
 	wn.draw(this->getRect());
+	for (Bullet& bullet : this->bullets)
+	{
+		bullet.update(wn);
+	}
+}
+
+void Player::shoot(float angle)
+{
+	Bullet bullet = Bullet(*this, angle);
+	//if (this->bullets.size() > 10)
+	//{
+	//	this->bullets.erase(this->bullets.begin());
+	//}
+
+	this->bullets.push_back(bullet);
 }
