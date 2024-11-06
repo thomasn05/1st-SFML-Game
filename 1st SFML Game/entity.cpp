@@ -31,12 +31,21 @@ RectangleShape Entity::getRect() const
 Vector2f Entity::get_component(Vector2i target, int distance) const
 {
 	Vector2f curr_pos = this->object.getPosition();
-	float dx = curr_pos.x - target.x; //Get their difference in x and y
-	float dy = curr_pos.y - target.y;
+	
+	float angle = get_angle(curr_pos, target);
 
-	float angle = atan2(dy, dx); //Find theta
 	float new_x = curr_pos.x - distance * cos(angle); //Use trig to find how much to move in the x and y
 	float new_y = curr_pos.y - distance * sin(angle);
 
 	return Vector2f(new_x, new_y);
+}
+
+float get_angle(Vector2f point1, Vector2i point2)
+{
+	float dx = point1.x - point2.x; //Get their difference in x and y
+	float dy = point1.y - point2.y;
+
+	float angle = atan2(dy, dx); //Find theta
+
+	return angle;
 }
