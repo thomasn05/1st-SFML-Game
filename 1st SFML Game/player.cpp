@@ -1,6 +1,10 @@
 #include "player.h"
 #include <iostream>
 
+/*
+* @brief update the player movement and their abilities (dash, shoot, wall)
+* @param wn: the window to draw the player on
+*/
 void Player::update(RenderWindow& wn)
 {
 	if (Mouse::isButtonPressed(Mouse::Right)) //Move
@@ -51,6 +55,10 @@ void Player::update(RenderWindow& wn)
 	}
 }
 
+/*
+* @brief Player's shoot ability
+* @param angle: the angle of the bullet in radians
+*/
 void Player::shoot(float angle) //Create a new bullet and add it to player list
 {
 	Bullet bullet = Bullet(*this, angle);
