@@ -24,7 +24,7 @@ void Player::update(RenderWindow& wn)
 	if (this->target_pos)
 	{
 		Vector2f curr = this->getRect().getPosition(); //The curr player postion
-		bool reach_dest = (abs(curr.x - this->target_pos->x) < 3) && (abs(curr.y - this->target_pos->y) < 3); //Check the player and the target pos is within 3 pixel of each other
+		bool reach_dest = point_collide(curr, Vector2f(this->target_pos->x, this->target_pos->y));
 
 		if (!reach_dest) //Keep moving if it hasn't reach its destination
 		{
@@ -48,10 +48,6 @@ void Player::shoot(float angle)
 {
 	Bullet bullet = Bullet(*this, angle);
 	bullet.set_target();
-	if (this->bullets.size() > 10)
-	{
-		this->bullets.erase(this->bullets.begin());
-	}
 
 	this->bullets.push_back(bullet);
 }

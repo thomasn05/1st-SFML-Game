@@ -50,3 +50,8 @@ float get_angle(Vector2f point1, Vector2i point2)
 
 	return angle;
 }
+
+bool point_collide(Vector2f p1, Vector2f p2)
+{
+	return (abs(p1.x - p2.x) < 3) && (abs(p1.y - p2.y) < 3);  //Check the player and the target pos is within 3 pixel of each other
+}
