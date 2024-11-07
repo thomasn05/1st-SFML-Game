@@ -13,6 +13,7 @@ private:
     int speed = 10;
     Vector2i target_pos;
     float angle;
+    bool alive = 1;
 
 public:
     Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), bullet_size, Color::Red, (angle * 180 / 3.14f) - 90), angle(angle) {}

@@ -24,7 +24,7 @@ void Player::update(RenderWindow& wn)
 	if (this->target_pos)
 	{
 		Vector2f curr = this->getRect().getPosition(); //The curr player postion
-		bool reach_dest = point_collide(curr, Vector2f(static_cast<float>(this->target_pos->x), static_cast<float>(this->target_pos->y)));
+		bool reach_dest = point_collide(curr, *(this->target_pos));
 
 		if (!reach_dest) //Keep moving if it hasn't reach its destination
 		{

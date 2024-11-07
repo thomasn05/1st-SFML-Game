@@ -15,7 +15,9 @@ Vector2f bullet_spawn(Entity host, float angle)
 
 void Bullet::update(RenderWindow& wn)
 {
-	this->move(this->target_pos, this->speed);
+	bool reach_dest = point_collide(this->getRect().getPosition(), this->target_pos);
+	if (reach_dest) { this->alive = 0; }
+	else { this->move(this->target_pos, this->speed); }
 	wn.draw(this->getRect());
 }
 
