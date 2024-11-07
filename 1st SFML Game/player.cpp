@@ -38,9 +38,14 @@ void Player::update(RenderWindow& wn)
 		}
 	}
 	wn.draw(this->getRect());
-	for (Bullet& bullet : this->bullets)
+	for (auto b = this->bullets.begin(); b != this->bullets.end();)
 	{
-		bullet.update(wn);
+		if (!b->get_status()) { b = this->bullets.erase(b); }
+		else 
+		{ 
+			b->update(wn);
+			++b; 
+		}
 	}
 }
 

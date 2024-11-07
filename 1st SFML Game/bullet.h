@@ -19,4 +19,5 @@ public:
     Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), bullet_size, Color::Red, (angle * 180 / 3.14f) - 90), angle(angle) {}
     void update(RenderWindow& wn);
     void set_target();
+    bool get_status();
 };
