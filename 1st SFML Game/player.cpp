@@ -49,7 +49,7 @@ void Player::shoot(float angle)
 	Bullet bullet = Bullet(*this, angle);
 	if (this->bullets.size() > 10)
 	{
-		std::cout << this->bullets.size() << std::endl;
+		this->bullets.erase(this->bullets.begin());
 	}
 
 	this->bullets.push_back(bullet);
