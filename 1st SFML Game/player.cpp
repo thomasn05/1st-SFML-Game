@@ -47,6 +47,7 @@ void Player::update(RenderWindow& wn)
 void Player::shoot(float angle)
 {
 	Bullet bullet = Bullet(*this, angle);
+	bullet.set_target();
 	if (this->bullets.size() > 10)
 	{
 		this->bullets.erase(this->bullets.begin());

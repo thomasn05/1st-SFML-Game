@@ -1,4 +1,5 @@
 #include "bullet.h"
+#include <iostream>
 
 Vector2f bullet_spawn(Entity host, float angle)
 {
@@ -14,5 +15,15 @@ Vector2f bullet_spawn(Entity host, float angle)
 
 void Bullet::update(RenderWindow& wn)
 {
+	this->move(this->target_pos, this->speed);
 	wn.draw(this->getRect());
+}
+
+void Bullet::set_target()
+{
+	int x_dist = static_cast<int>(max_distance * cos(this->angle));
+	int y_dist = static_cast<int>(max_distance * sin(this->angle));
+	Vector2f curr_pos = this->getRect().getPosition();
+
+	this->target_pos = Vector2i(static_cast<int>(curr_pos.x) + x_dist, static_cast<int>(curr_pos.y) + y_dist);
 }
