@@ -25,5 +25,5 @@ void Bullet::set_target()
 	int y_dist = static_cast<int>(max_distance * sin(this->angle));
 	Vector2f curr_pos = this->getRect().getPosition();
 
-	this->target_pos = Vector2i(static_cast<int>(curr_pos.x) + x_dist, static_cast<int>(curr_pos.y) + y_dist);
+	this->target_pos = Vector2i(static_cast<int>(curr_pos.x) - x_dist, static_cast<int>(curr_pos.y) - y_dist);
 }
