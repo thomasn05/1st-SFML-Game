@@ -18,3 +18,5 @@ public:
 
 float get_angle(Vector2f point1, Vector2i point2); //Get the angle from the entity to a target
 bool point_collide(Vector2f p1, Vector2f p2);
+Vector2f VecFloat_to_Int(Vector2f v);
+Vector2i VecInt_to_Float(Vector2i v);

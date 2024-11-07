@@ -55,3 +55,13 @@ bool point_collide(Vector2f p1, Vector2f p2)
 {
 	return (abs(p1.x - p2.x) < 3) && (abs(p1.y - p2.y) < 3);  //Check the player and the target pos is within 3 pixel of each other
 }
+
+Vector2f VecFloat_to_Int(Vector2f v)
+{
+	return Vector2f(static_cast<float>(v.x), static_cast<float>(v.y));
+}
+
+Vector2i VecInt_to_Float(Vector2i v)
+{
+	return Vector2i(static_cast<int>(v.x), static_cast<int>(v.y));
+}
