@@ -1,6 +1,11 @@
 #include "bullet.h"
-#include <iostream>
 
+/*
+* @breif Calculate the spawning of the bullet around its host Entity
+* @param host: the Entity that shoot the Bullet
+* @param angle: the angle of the Bullet
+* @return a Vector2f represent the spawning location of the Bullet
+*/
 Vector2f bullet_spawn(Entity host, float angle)
 {
 	RectangleShape host_rect = host.getRect();
@@ -8,11 +13,15 @@ Vector2f bullet_spawn(Entity host, float angle)
 	float y_dist = ((host_rect.getSize().y) / 2.f) + (bullet_size.y / 2.f) + 5;
 	Vector2f pos = host_rect.getPosition();
 
-	Vector2f spawn = Vector2f(pos.x - cos(angle) * x_dist, pos.y - sin(angle)*y_dist); //spawn infron of player
+	Vector2f spawn = Vector2f(pos.x - cos(angle) * x_dist, pos.y - sin(angle)*y_dist); //spawn infront of player
 
 	return spawn;
 }
 
+/*
+*@brief update the Bullet state moving it if it is alive (become dead if it has reach it target)
+* @param wn: window to draw the Bullet on
+*/
 void Bullet::update(RenderWindow& wn) //Draw and check when target is reach
 {
 	bool reach_dest = point_collide(this->getRect().getPosition(), this->target_pos);
@@ -21,6 +30,9 @@ void Bullet::update(RenderWindow& wn) //Draw and check when target is reach
 	wn.draw(this->getRect());
 }
 
+/*
+* @brief Calcualte the target position of the Bullet (done after Bullet is initialized)
+*/
 void Bullet::set_target() //Set the target_pos
 {
 	int x_dist = static_cast<int>(max_distance * cos(this->angle)); //Find the x and y distance 
@@ -30,6 +42,9 @@ void Bullet::set_target() //Set the target_pos
 	this->target_pos = Vector2i(static_cast<int>(curr_pos.x) - x_dist, static_cast<int>(curr_pos.y) - y_dist); //Convert to int 
 }
 
+/*
+* @brief get the Bullet alive state (0 = dead, 1 = alive)
+*/
 bool Bullet::get_status() //Alive status
 {
 	return this->alive;
