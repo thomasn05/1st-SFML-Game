@@ -18,7 +18,7 @@ public:
 
 	RectangleShape getRect() const; //Get the RectangeShape
 
-	Vector2f get_component(Vector2i target, int distance) const; //Get the x and y component distance from the entity to target (usually a mouse position which is usally a Vector2i)
+	Vector2f get_component(Vector2i target, int distance) const; //Get the x and y component distance from the entity to target
 };
 
 float get_angle(Vector2f point1, Vector2i point2); //Get the angle from the entity to a target
