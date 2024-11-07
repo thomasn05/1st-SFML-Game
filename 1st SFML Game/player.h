@@ -13,12 +13,15 @@ class Player :
 private:
     Vector2i *target_pos = nullptr;
     int speed = MOVING_SPEED;
-    std::vector<Bullet> bullets;
+    std::vector<Bullet> bullets; //Player bullets
 
 public:
-    Player(Vector2f spawn) : Entity(spawn, Vector2f(25, 25), Color::Green) {}
-    void update(RenderWindow& wn);
-    void shoot(float angle);
-    //TODO: Player abilities - shoot, wall
+    Player(Vector2f spawn) : Entity(spawn, Vector2f(25, 25), Color::Green) {} //Constructor 
+
+    void update(RenderWindow& wn);//Update the player positon and draws them on screen
+
+    void shoot(float angle); //Shoot
+
+    //TODO: Player abilities - wall, Player CD
 };
 
