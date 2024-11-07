@@ -8,7 +8,7 @@ class Entity
 private: 
 	RectangleShape object;
 public:
-	Entity(Vector2f position, Vector2f size, Color color); //Constructor
+	Entity(Vector2f position, Vector2f size, Color color, float angle = 0); //Constructor
 	~Entity() = default;
 	void move(Vector2i target, int speed); //Moving Entity
 	bool collide(Entity& other) const; //Collision Detection

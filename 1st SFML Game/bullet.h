@@ -14,6 +14,6 @@ private:
     Vector2f target_pos;
 
 public:
-    Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), bullet_size, Color::Red) {}
+    Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), bullet_size, Color::Red, (angle * 180 / 3.14f) - 90) {}
     void update(RenderWindow& wn);
 };

@@ -1,11 +1,12 @@
 #include "entity.h"
 
-Entity::Entity(Vector2f position, Vector2f size, Color color)
+Entity::Entity(Vector2f position, Vector2f size, Color color, float angle)
 {
 	this->object.setSize(size); //Setup the RectangleShape
 	this->object.setFillColor(color);
 	this->object.setOrigin(size.x / 2, size.y / 2); //Set the origin to the middle of the Rectangle
 	this->object.setPosition(position);
+	this->object.setRotation(angle);
 }
 
 void Entity::move(Vector2i target, int speed)
