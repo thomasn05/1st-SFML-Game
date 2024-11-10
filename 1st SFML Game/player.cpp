@@ -72,3 +72,8 @@ bool Player::can_dash(Clock game_timer)
 {
 	return game_timer.getElapsedTime() - dash_timer >= DASH_CD;
 }
+
+std::vector<Bullet> Player::get_bullets()
+{
+	return this->bullets;
+}

@@ -52,6 +52,8 @@ public:
     */
     bool can_dash(Clock game_timer);
 
+    std::vector<Bullet> get_bullets();
+
     //TODO: Player abilities - wall
 };
 
