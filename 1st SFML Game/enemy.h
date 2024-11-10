@@ -17,7 +17,7 @@ private:
     int speed = ENEMY_SPEED;
 
 public:
-    Enemy(Vector2f spawn) : Entity(spawn, size, Color::Red) {}
+    Enemy(Vector2f spawn) : Entity(spawn, size, Color::Red) { this->lifespan = seconds(1); }
 
     void update(RenderWindow& wn, Player player);
 
