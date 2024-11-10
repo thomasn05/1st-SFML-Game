@@ -17,7 +17,7 @@ void Entity::move(Vector2i target, int speed)
 	this->object.setPosition(new_pos);
 }
 
-bool Entity::collide(Entity& other) const
+bool Entity::collide(Entity other) const
 {
 	FloatRect this_bounds = this->object.getGlobalBounds();
 	FloatRect other_bounds = other.object.getGlobalBounds();

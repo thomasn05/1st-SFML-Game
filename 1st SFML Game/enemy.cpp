@@ -1,5 +1,6 @@
 #include "enemy.h"
 #include <random>
+#include <iostream>
 
 int coord(float coord, int range)
 {
@@ -21,8 +22,8 @@ int coord(float coord, int range)
 
 Vector2f spawn(Player player)
 {
-	float x_pos = coord(player.object.getPosition().x, 1400);
-	float y_pos = coord(player.object.getPosition().y, 1000);
+	float x_pos = (float)coord(player.object.getPosition().x, 1400);
+	float y_pos = (float)coord(player.object.getPosition().y, 1000);
 
 	return Vector2f(x_pos, y_pos);
 }
@@ -39,9 +40,12 @@ bool Enemy::is_dead(std::vector<Bullet> player_bullets)
 	{
 		if (this->collide(*b))
 		{
+			player_bullets.erase(b);
 			this->lifespan = seconds(0);
 			break;
 		}
+
+		++b;
 	}
 
 	return this->lifespan == seconds(0);

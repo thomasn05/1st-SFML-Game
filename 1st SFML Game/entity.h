@@ -34,7 +34,7 @@ public:
 	* @param other: another Entity object
 	* @return True if collided, False if not
 	*/
-	bool collide(Entity& other) const; //Collision Detection
+	bool collide(Entity other) const; //Collision Detection
 
 	/*
 	* @brief Get the x and y component between the Entity object and a target based on a certain distance
