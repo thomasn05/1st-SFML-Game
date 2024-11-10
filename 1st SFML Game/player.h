@@ -2,7 +2,7 @@
 #include "bullet.h"
 #include <vector>
 
-const int MOVING_SPEED = 5;
+const int PLAYER_SPEED = 5;
 const int DASH_SPEED = 10;
 const int DASH_DISTANCE = 50;
 const Time SHOOT_CD = seconds(1);
@@ -14,7 +14,7 @@ class Player :
 {
 private:
     Vector2i *target_pos = nullptr;
-    int speed = MOVING_SPEED;
+    int speed = PLAYER_SPEED;
     std::vector<Bullet> bullets; //Player bullets
     Time dash_timer = seconds(0);
     Time shoot_timer = seconds(0);

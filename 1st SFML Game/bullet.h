@@ -3,6 +3,7 @@
 
 const Vector2f bullet_size = Vector2f(5.f, 10.f);
 const int max_distance = 200;
+const int BULLET_SPEED = 10;
 
 /*
 * @breif Calculate the spawning of the bullet around its host Entity
@@ -16,7 +17,7 @@ class Bullet :
     public Entity
 {
 private:
-    int speed = 10;
+    int speed = BULLET_SPEED;
     Vector2i target_pos;
     float angle;
 

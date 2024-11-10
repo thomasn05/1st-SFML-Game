@@ -30,5 +30,6 @@ Vector2f spawn(Entity player)
 
 void Enemy::update(RenderWindow& wn)
 {
+	this->move((Vector2i)(player.object.getPosition()), this->speed);
 	wn.draw(this->object);
 }

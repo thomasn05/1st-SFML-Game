@@ -6,7 +6,7 @@ void Player::update(RenderWindow& wn, Clock game_timer)
 	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
 	{
 		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Allocate a new Vector2i pointer pointing to a mouse position
-		this->speed = MOVING_SPEED;
+		this->speed = PLAYER_SPEED;
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::E) && this->can_dash(game_timer)) //Dash
@@ -37,7 +37,7 @@ void Player::update(RenderWindow& wn, Clock game_timer)
 		else //if it has set it to a nullptr so that it doesn't try to keep moving
 		{
 			this->target_pos = nullptr;
-			this->speed = MOVING_SPEED;
+			this->speed = PLAYER_SPEED;
 			this->dashing = 0;
 		}
 	}
