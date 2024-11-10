@@ -1,5 +1,5 @@
-#include "entity.h"
 #include "player.h"
+#include "enemy.h"
 
 const int win_width = 1400;
 const int win_height = 1000;
@@ -12,6 +12,7 @@ int main()
     Clock game_timer;
 
     Player player(player_spawn);
+    Enemy e1(player);
 
     while (window.isOpen())
     {
@@ -25,6 +26,7 @@ int main()
         window.clear();
 
         player.update(window, game_timer);
+        e1.update(window);
 
         window.display();
     }
