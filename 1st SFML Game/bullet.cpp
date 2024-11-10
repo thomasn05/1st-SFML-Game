@@ -1,4 +1,5 @@
 #include "bullet.h"
+#include <iostream>
 
 /*
 * @breif Calculate the spawning of the bullet around its host Entity
@@ -25,7 +26,7 @@ Vector2f bullet_spawn(Entity host, float angle)
 void Bullet::update(RenderWindow& wn) //Draw and check when target is reach
 {
 	bool reach_dest = point_collide(this->getRect().getPosition(), this->target_pos);
-	if (reach_dest) { this->alive = 0; } //No longer will be in player bullet list
+	if (reach_dest) { this->lifespan = seconds(0); } //No longer will be in player bullet list
 	else { this->move(this->target_pos, this->speed); }
 	wn.draw(this->getRect());
 }
@@ -43,9 +44,9 @@ void Bullet::set_target() //Set the target_pos
 }
 
 /*
-* @brief get the Bullet alive state (0 = dead, 1 = alive)
+* @brief get the Bullet alive state (0s = dead, 1+ seconds = alive)
 */
-bool Bullet::get_status() //Alive status
+bool Bullet::is_dead() //Alive status
 {
-	return this->alive;
+	return this->lifespan == seconds(0);
 }

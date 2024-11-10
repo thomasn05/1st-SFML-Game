@@ -46,7 +46,7 @@ void Player::update(RenderWindow& wn)
 	//Update player bullets
 	for (auto b = this->bullets.begin(); b != this->bullets.end();)
 	{
-		if (!b->get_status()) { b = this->bullets.erase(b); } //Remove if bullet is not alive
+		if (b->is_dead()) { b = this->bullets.erase(b); } //Remove if bullet is not alive
 		else 
 		{ 
 			b->update(wn);
