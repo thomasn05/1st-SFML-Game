@@ -5,22 +5,25 @@
 * @brief update the player movement and their abilities (dash, shoot, wall)
 * @param wn: the window to draw the player on
 */
-void Player::update(RenderWindow& wn)
+void Player::update(RenderWindow& wn, Clock game_timer)
 {
-	if (Mouse::isButtonPressed(Mouse::Right)) //Move
+	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
 	{
 		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Allocate a new Vector2i pointer pointing to a mouse position
 		this->speed = MOVING_SPEED;
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::E)) //Dash
+	if (Keyboard::isKeyPressed(Keyboard::E) && this->can_dash(game_timer)) //Dash
 	{
+		this->dashing = 1;
+		this->dash_timer = game_timer.getElapsedTime();
 		this->target_pos = new Vector2i(this->get_component(Mouse::getPosition(wn), DASH_DISTANCE)); //Allocate a new Vector2i pointer pointing to a mouse position
 		this->speed = DASH_SPEED;
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Q)) //Shoot
+	if (Keyboard::isKeyPressed(Keyboard::Q) && this->can_shoot(game_timer)) //Shoot
 	{
+		this->shoot_timer = game_timer.getElapsedTime();
 		float angle = get_angle(this->object.getPosition(), Mouse::getPosition(wn));
 		this->shoot(angle);
 	}
@@ -39,6 +42,7 @@ void Player::update(RenderWindow& wn)
 		{
 			this->target_pos = nullptr;
 			this->speed = MOVING_SPEED;
+			this->dashing = 0;
 		}
 	}
 	wn.draw(this->object);
@@ -65,4 +69,14 @@ void Player::shoot(float angle) //Create a new bullet and add it to player list
 	bullet.set_target();//Set the bullet target_destination
 
 	this->bullets.push_back(bullet);
+}
+
+bool Player::can_shoot(Clock game_timer)
+{
+	return game_timer.getElapsedTime() - shoot_timer >= SHOOT_CD;
+}
+
+bool Player::can_dash(Clock game_timer)
+{
+	return game_timer.getElapsedTime() - dash_timer >= DASH_CD;
 }

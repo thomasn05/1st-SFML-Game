@@ -9,6 +9,7 @@ int main()
 {
     RenderWindow window(VideoMode(win_width, win_height), "Dodging Game");
     window.setFramerateLimit(60);
+    Clock game_timer;
 
     Player player(player_spawn);
 
@@ -23,7 +24,7 @@ int main()
 
         window.clear();
 
-        player.update(window);
+        player.update(window, game_timer);
 
         window.display();
     }
