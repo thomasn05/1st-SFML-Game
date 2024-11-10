@@ -37,6 +37,11 @@ Vector2f Entity::get_component(Vector2i target, int distance) const
 	return Vector2f(new_x, new_y);
 }
 
+bool Entity::is_dead()
+{
+	return this->lifespan == seconds(0);
+}
+
 float get_angle(Vector2f point1, Vector2i point2)
 {
 	float dx = point1.x - point2.x; //Get their difference in x and y

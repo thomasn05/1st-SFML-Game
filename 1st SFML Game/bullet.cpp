@@ -29,8 +29,3 @@ void Bullet::set_target() //Set the target_pos
 
 	this->target_pos = Vector2i(static_cast<int>(curr_pos.x) - x_dist, static_cast<int>(curr_pos.y) - y_dist); //Convert to int 
 }
-
-bool Bullet::is_dead() //Alive status
-{
-	return this->lifespan == seconds(0);
-}

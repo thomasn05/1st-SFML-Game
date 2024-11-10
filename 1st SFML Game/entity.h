@@ -7,7 +7,7 @@ class Entity
 {
 
 public:
-	Time lifespan; //lifewspan of an object
+	Time lifespan = seconds(1); //lifewspan of an object
 
 	RectangleShape object;
 
@@ -43,6 +43,8 @@ public:
 	* @return a Vector2f(x_component, y_component)
 	*/
 	Vector2f get_component(Vector2i target, int distance) const; //Get the x and y component distance from the entity to
+
+	bool is_dead();
 };
 
 /*
