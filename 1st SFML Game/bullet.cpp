@@ -1,12 +1,6 @@
 #include "bullet.h"
 #include <iostream>
 
-/*
-* @breif Calculate the spawning of the bullet around its host Entity
-* @param host: the Entity that shoot the Bullet
-* @param angle: the angle of the Bullet
-* @return a Vector2f represent the spawning location of the Bullet
-*/
 Vector2f bullet_spawn(Entity host, float angle)
 {
 	RectangleShape host_rect = host.object;
@@ -19,10 +13,6 @@ Vector2f bullet_spawn(Entity host, float angle)
 	return spawn;
 }
 
-/*
-*@brief update the Bullet state moving it if it is alive (become dead if it has reach it target)
-* @param wn: window to draw the Bullet on
-*/
 void Bullet::update(RenderWindow& wn) //Draw and check when target is reach
 {
 	bool reach_dest = point_collide(this->object.getPosition(), this->target_pos);
@@ -31,9 +21,6 @@ void Bullet::update(RenderWindow& wn) //Draw and check when target is reach
 	wn.draw(this->object);
 }
 
-/*
-* @brief Calcualte the target position of the Bullet (done after Bullet is initialized)
-*/
 void Bullet::set_target() //Set the target_pos
 {
 	int x_dist = static_cast<int>(max_distance * cos(this->angle)); //Find the x and y distance 
@@ -43,9 +30,6 @@ void Bullet::set_target() //Set the target_pos
 	this->target_pos = Vector2i(static_cast<int>(curr_pos.x) - x_dist, static_cast<int>(curr_pos.y) - y_dist); //Convert to int 
 }
 
-/*
-* @brief get the Bullet alive state (0s = dead, 1+ seconds = alive)
-*/
 bool Bullet::is_dead() //Alive status
 {
 	return this->lifespan == seconds(0);

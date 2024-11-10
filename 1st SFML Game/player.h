@@ -21,16 +21,37 @@ private:
     bool dashing = 0;
 
 public:
+    /*
+    *@brief Constructor create a Player Entity
+    * @param spawn: the starting location of the player
+    */
     Player(Vector2f spawn) : Entity(spawn, Vector2f(25, 25), Color::Green) {} //Constructor 
 
+    /*
+    * @brief update the player movement and their abilities (dash, shoot, wall)
+    * @param wn: the window to draw the player on
+    * @param game_timer: the time of the game
+    */
     void update(RenderWindow& wn, Clock game_timer);//Update the player positon and draws them on screen
 
+    /*
+    * @brief Player's shoot ability
+    * @param angle: the angle of the bullet in radians
+    */
     void shoot(float angle); //Shoot
-
+     
+    /*
+    * @brief check if the player's shoot ability is up
+    * @param game_timer: time of the game
+    */
     bool can_shoot(Clock game_timer);
 
+    /*
+    * @brief check if the player's dash ability is up
+    * @param game_timer: time of the game
+    */
     bool can_dash(Clock game_timer);
 
-    //TODO: Player abilities - wall, Player CD
+    //TODO: Player abilities - wall
 };
 
