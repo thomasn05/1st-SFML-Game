@@ -44,14 +44,6 @@ bool Entity::collide(Entity& other) const
 }
 
 /*
-* @brief get the Rectangle of the Entity
-*/
-RectangleShape Entity::getRect() const
-{
-	return this->object;
-}
-
-/*
 * @brief Get the x and y component between the Entity object and a target based on a certain distance
 * @param target: the target pos (usually a mouse position which is represented as Vector2i)
 * @param distance: the hypothenuse between the two point

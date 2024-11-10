@@ -15,7 +15,7 @@ private:
     float angle;
 
 public:
-    Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), bullet_size, Color::Red, (angle * 180 / 3.14f) - 90), angle(angle) {} //Construtor
+    Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), bullet_size, Color::Red, (angle * 180 / 3.14f) - 90), angle(angle) { this->lifespan = seconds(1); } //Construtor
 
     void update(RenderWindow& wn); //Draw and check for when target is reach
 

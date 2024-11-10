@@ -21,13 +21,13 @@ void Player::update(RenderWindow& wn)
 
 	if (Keyboard::isKeyPressed(Keyboard::Q)) //Shoot
 	{
-		float angle = get_angle(this->getRect().getPosition(), Mouse::getPosition(wn));
+		float angle = get_angle(this->object.getPosition(), Mouse::getPosition(wn));
 		this->shoot(angle);
 	}
 
 	if (this->target_pos) //Check if player has reach target
 	{
-		Vector2f curr = this->getRect().getPosition(); //The curr player postion
+		Vector2f curr = this->object.getPosition(); //The curr player postion
 		bool reach_dest = point_collide(curr, *(this->target_pos));
 
 		if (!reach_dest) //Keep moving if it hasn't reach its destination
@@ -41,7 +41,7 @@ void Player::update(RenderWindow& wn)
 			this->speed = MOVING_SPEED;
 		}
 	}
-	wn.draw(this->getRect());
+	wn.draw(this->object);
 
 	//Update player bullets
 	for (auto b = this->bullets.begin(); b != this->bullets.end();)
