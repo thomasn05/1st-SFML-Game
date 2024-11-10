@@ -14,13 +14,12 @@ class Enemy :
     public Entity
 {
 private:
-    Player& player;
     int speed = ENEMY_SPEED;
 
 public:
-    Enemy(Player& player) : Entity(spawn(player), size, Color::Red), player(player) {}
+    Enemy(Vector2f spawn) : Entity(spawn, size, Color::Red) {}
 
-    void update(RenderWindow& wn);
+    void update(RenderWindow& wn, Player player);
 
-    bool is_dead();
+    bool is_dead(std::vector<Bullet> player_bullets);
 };

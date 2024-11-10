@@ -27,15 +27,14 @@ Vector2f spawn(Player player)
 	return Vector2f(x_pos, y_pos);
 }
 
-void Enemy::update(RenderWindow& wn)
+void Enemy::update(RenderWindow& wn, Player player)
 {
-	this->move((Vector2i)(player.object.getPosition()), this->speed);
+	this->move((Vector2i)player.object.getPosition(), this->speed);
 	wn.draw(this->object);
 }
 
-bool Enemy::is_dead()
+bool Enemy::is_dead(std::vector<Bullet> player_bullets)
 {
-	std::vector<Bullet> player_bullets = this->player.get_bullets();
 	for (auto b = player_bullets.begin(); b !=player_bullets.end();)
 	{
 		if (this->collide(*b))
