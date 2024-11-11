@@ -1,5 +1,4 @@
 #include "EnemyManager.h"
-#include <iostream>
 
 void EnemyManager::update(RenderWindow& wn, Time game_time)
 {
@@ -12,7 +11,8 @@ void EnemyManager::update(RenderWindow& wn, Time game_time)
 
 	for (auto e = this->enemies.begin(); e != this->enemies.end();)
 	{
-		
+		if (e->collide(this->player)) { this->player.lifespan = seconds(0); }
+
 		if (e->is_dead(this->player.get_bullets())) { e = this->enemies.erase(e); }
 		else
 		{
