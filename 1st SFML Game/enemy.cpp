@@ -34,7 +34,7 @@ void Enemy::update(RenderWindow& wn, Player player)
 	wn.draw(this->object);
 }
 
-bool Enemy::is_dead(std::vector<Bullet> player_bullets)
+bool Enemy::is_dead(std::vector<Bullet>& player_bullets)
 {
 	for (auto b = player_bullets.begin(); b !=player_bullets.end();)
 	{

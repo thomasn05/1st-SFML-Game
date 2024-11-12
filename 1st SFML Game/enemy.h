@@ -21,5 +21,5 @@ public:
 
     void update(RenderWindow& wn, Player player);
 
-    bool is_dead(std::vector<Bullet> player_bullets);
+    bool is_dead(std::vector<Bullet>& player_bullets);
 };

@@ -13,7 +13,8 @@ void EnemyManager::update(RenderWindow& wn, Time game_time)
 	{
 		if (e->collide(this->player)) { this->player.lifespan = seconds(0); }
 
-		if (e->is_dead(this->player.get_bullets())) { e = this->enemies.erase(e); }
+		auto& player_bullets = this->player.get_bullets();
+		if (e->is_dead(player_bullets)) { e = this->enemies.erase(e); }
 		else
 		{
 			e->update(wn, this->player);
