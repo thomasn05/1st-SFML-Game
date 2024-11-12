@@ -43,15 +43,21 @@ public:
     /*
     * @brief check if the player's shoot ability is up
     * @param game_timer: time of the game
+    * @return True if player shoot ability is up
     */
     bool can_shoot(Clock game_timer);
 
     /*
     * @brief check if the player's dash ability is up
     * @param game_timer: time of the game
+    * @return True if player dash ability is up
     */
     bool can_dash(Clock game_timer);
 
+    /*
+    * @brief returns a reference to the player curremt bullet vector
+    * @return a reference to player bullet vector
+    */
     std::vector<Bullet>& get_bullets();
 
     //TODO: Player abilities - wall

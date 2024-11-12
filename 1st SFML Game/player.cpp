@@ -62,17 +62,17 @@ void Player::shoot(float angle) //Create a new bullet and add it to player list
 	this->bullets.push_back(bullet);
 }
 
-bool Player::can_shoot(Clock game_timer)
+bool Player::can_shoot(Clock game_timer) //Check if player can shoot
 {
 	return game_timer.getElapsedTime() - shoot_timer >= SHOOT_CD;
 }
 
-bool Player::can_dash(Clock game_timer)
+bool Player::can_dash(Clock game_timer) //Check if player can dash
 {
 	return game_timer.getElapsedTime() - dash_timer >= DASH_CD;
 }
 
-std::vector<Bullet>& Player::get_bullets()
+std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's bullets
 {
 	return this->bullets;
 }
