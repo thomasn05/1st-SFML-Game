@@ -13,8 +13,17 @@ private:
 	Time enemies_timer = seconds(0);
 
 public:
+	/*
+	* @brief Create a manager to manage all enemies on screen 
+	* @param player: The player object is used to get its position and bullets
+	*/
 	EnemyManager(Player &player) : player(player) {}
 
+	/*
+	* @brief Create new enemy on the screen at set interval and check for their collision with the player and its bullets
+	* @param wn: the game window to draw the bullet on
+	* @param game_time: the curr time of the game (used for spawning)
+	*/
 	void update(RenderWindow &wn, Time game_time);
 };
 
