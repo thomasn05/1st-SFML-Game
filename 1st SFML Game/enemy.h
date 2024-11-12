@@ -4,7 +4,7 @@
 
 const float spawn_dist = 200;
 const Vector2f size = Vector2f(25, 25);
-const int ENEMY_SPEED = 4;
+const int ENEMY_SPEED = 3;
 
 /*
 * @brief Randomizes a coordinate between a certain range at a certain distance away from coord

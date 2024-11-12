@@ -2,7 +2,7 @@
 #include "entity.h"
 
 const Vector2f bullet_size = Vector2f(5.f, 10.f);
-const int max_distance = 200;
+const int max_distance = 300;
 const int BULLET_SPEED = 10;
 
 /*

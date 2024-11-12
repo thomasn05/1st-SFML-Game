@@ -1,7 +1,7 @@
 #include "enemy.h"
 #include <vector>
 
-const Time spawn_time = seconds(3);
+const Time spawn_time = milliseconds(500);
 
 #pragma once
 class EnemyManager
