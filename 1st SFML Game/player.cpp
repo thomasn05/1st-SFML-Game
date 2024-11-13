@@ -11,7 +11,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 
 	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.is_up(game_time)) //Dash
 	{
-		e_ability(mouse_pos);
+		this->e_ability(mouse_pos);
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.is_up(game_time)) //Shoot
