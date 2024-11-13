@@ -2,10 +2,11 @@
 
 void Player::update(RenderWindow& wn, Time game_time)
 {
-	Vector2i mouse_pos = Mouse::getPosition(wn);
+	Vector2i mouse_pos = Mouse::getPosition(wn);//Get the current mouse position relative to game window
+
 	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
 	{
-		this->target_pos = &mouse_pos; //Allocate a new Vector2i pointer pointing to a mouse position
+		this->target_pos = &mouse_pos; //Set the target pos pointer to the mouse_pos address
 		this->speed = PLAYER_SPEED;
 	}
 
@@ -60,7 +61,7 @@ void Player::q_ability(Vector2i mouse_pos) //Create a new bullet and add it to p
 	this->bullets.push_back(bullet);
 }
 
-void Player::e_ability(Vector2i mouse_pos)
+void Player::e_ability(Vector2i mouse_pos) //Dash ability
 {
 	this->dashing = 1;
 	this->target_pos = new Vector2i(this->get_component(mouse_pos, DASH_DISTANCE)); //Allocate a new Vector2i pointer pointing to a mouse position

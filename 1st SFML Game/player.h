@@ -10,10 +10,19 @@ const Time SHOOT_CD = seconds(1);
 const Time DASH_CD = seconds(3);
 const Time WALL_CD = seconds(5);
 
+/*
+* @brief Represent the ability of the player
+*/
 struct Ability
 {
-    Time timer;
-    Time CD;
+    Time timer; // @brief the current ability 
+    Time CD; // @brief the cooldown of the ability
+
+    /*
+    * @brief Check if the ability is up (set the timer to game time if it is)
+    * @param game_time: the curr time of the game
+    * @return True if it is up
+    */
     bool is_up(Time game_time);
 };
 
@@ -23,11 +32,11 @@ class Player :
 private:
     Vector2i *target_pos = nullptr;
     int speed = PLAYER_SPEED;
-    std::vector<Bullet> bullets; //Player bullets
-    Ability shoot = { seconds(0), SHOOT_CD };
-    Ability dash = { seconds(0), DASH_CD };
-    Ability wall = { seconds(0), WALL_CD };
-    bool dashing = 0;
+    std::vector<Bullet> bullets; //@brief Player bullets
+    Ability shoot = { seconds(0), SHOOT_CD }; // @brief represent player's shoot ability
+    Ability dash = { seconds(0), DASH_CD }; // @brief represent player's dash ability
+    Ability wall = { seconds(0), WALL_CD }; // @brief represent player's wall ability
+    bool dashing = 0; // @brief 1 is player is currently dashing 0 if not
 
 public:
     /*
@@ -45,10 +54,14 @@ public:
         
     /*
     * @brief Player's shoot ability
-    * @param angle: the angle of the bullet in radians
+    * @param mouse_pos: the mouse position relative to game window
     */
     void q_ability(Vector2i mouse_pos); //Shoot
 
+    /*
+   * @brief Player's dash ability
+   * @param mouse_pos: the mouse position relative to game window
+   */
     void e_ability(Vector2i mouse_pos);
      
     std::vector<Bullet>& get_bullets();
