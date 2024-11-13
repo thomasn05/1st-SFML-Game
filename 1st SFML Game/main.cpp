@@ -59,7 +59,7 @@ int main()
         if (!player.is_dead())
         {
             player.update(window, game_timer.getElapsedTime());
-            //E_manager.update(window, game_timer.getElapsedTime());
+            E_manager.update(window, game_timer.getElapsedTime());
         }
         else { draw_end_screen(font, window); }
 

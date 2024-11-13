@@ -2,7 +2,7 @@
 #include "entity.h"
 #include "player.h"
 
-const float spawn_dist = 200;
+const float spawn_dist = 200; // @brief how far the enemy will spawn from the player
 const Vector2f size = Vector2f(25, 25);
 const int ENEMY_SPEED = 3;
 

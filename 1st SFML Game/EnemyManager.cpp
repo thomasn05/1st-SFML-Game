@@ -2,9 +2,8 @@
 
 void EnemyManager::update(RenderWindow& wn, Time game_time)
 {
-	if ((game_time - this->enemies_timer) >= spawn_time && this->enemies.size() < this->max) //Create an Enemy is store it in its vector after a certain time (capped at max)
+	if (this->enemy_spawn.is_up(game_time) && this->enemies.size() < this->max) //Create an Enemy is store it in its vector after a certain time (capped at max)
 	{
-		this->enemies_timer = game_time;
 		Enemy enemy(spawn(this->player));
 		this->enemies.push_back(enemy);
 	}
