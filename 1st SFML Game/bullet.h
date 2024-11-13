@@ -2,7 +2,7 @@
 #include "entity.h"
 
 const Vector2f bullet_size = Vector2f(5.f, 10.f);
-const int max_distance = 300;
+const int max_distance = 300; // @brief the maximum distance the bullet can travel
 const int BULLET_SPEED = 10;
 
 /*
@@ -18,8 +18,8 @@ class Bullet :
 {
 private:
     int speed = BULLET_SPEED;
-    Vector2i target_pos;
-    float angle;
+    Vector2i target_pos; // @brief where the bullet is moving towards
+    float angle; // @brief roation of the ullet
 
 public:
     /*

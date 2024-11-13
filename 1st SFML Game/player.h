@@ -30,7 +30,7 @@ class Player :
     public Entity
 {
 private:
-    Vector2i *target_pos = nullptr;
+    Vector2i *target_pos = nullptr; // @brief points to the pos that the player is heading towards (null if not moving)
     int speed = PLAYER_SPEED;
     std::vector<Bullet> bullets; //@brief Player bullets
     Ability shoot = { seconds(0), SHOOT_CD }; // @brief represent player's shoot ability
@@ -59,11 +59,14 @@ public:
     void q_ability(Vector2i mouse_pos); //Shoot
 
     /*
-   * @brief Player's dash ability
-   * @param mouse_pos: the mouse position relative to game window
-   */
+    * @brief Player's dash ability
+    * @param mouse_pos: the mouse position relative to game window
+    */
     void e_ability(Vector2i mouse_pos);
      
+    /*
+    * @brief return the reference to the player's bullets vector
+    */
     std::vector<Bullet>& get_bullets();
 
     //TODO: Player abilities - wall
