@@ -5,15 +5,19 @@ const int win_width = 1400;
 const int win_height = 1000;
 const Vector2f player_spawn = Vector2f(win_width / 2, win_height / 2);
 
+const int font_size = 50;
+const Vector2f end_text_spawn = Vector2f(win_width / 2 - font_size / 2 - 75, win_height / 2 - font_size / 2);
+
 void draw_end_screen(Font font, RenderWindow& wn)
 {
     Text end_text;
     end_text.setFont(font);
     end_text.setString("Game Over!");
-    end_text.setCharacterSize(50);
+    end_text.setCharacterSize(font_size);
     end_text.setFillColor(Color::Red);
     end_text.setStyle(Text::Bold);
-    end_text.setPosition(player_spawn);
+    end_text.setOrigin(Vector2f(font_size / 2, font_size / 2));
+    end_text.setPosition(end_text_spawn);
 
     wn.draw(end_text);
 }
