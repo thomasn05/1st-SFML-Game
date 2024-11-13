@@ -4,10 +4,10 @@
 
 const int win_width = 1400;
 const int win_height = 1000;
-const Vector2f player_spawn = Vector2f(win_width / 2, win_height / 2);
+const Vector2f player_spawn = Vector2f(win_width / 2, win_height / 2); // @brief location of player starting position
 
-const int font_size = 50;
-const Vector2f end_text_spawn = Vector2f(win_width / 2 - font_size / 2 - 75, win_height / 2 - font_size / 2);
+const int font_size = 50; // @brief size of end_game_text
+const Vector2f end_text_spawn = Vector2f(win_width / 2 - font_size / 2 - 75, win_height / 2 - font_size / 2); // @brief the pos of the "Game Over!" text
 
 void draw_end_screen(Font font, RenderWindow& wn)
 {

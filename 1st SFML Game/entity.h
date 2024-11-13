@@ -7,7 +7,7 @@ class Entity
 {
 
 public:
-	Time lifespan = seconds(1); //lifewspan of an object
+	Time lifespan = seconds(1); // @brief lifewspan of an object
 
 	RectangleShape object;
 
