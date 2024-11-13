@@ -1,6 +1,6 @@
 #include "player.h"
 
-void Player::update(RenderWindow& wn, Clock game_timer)
+void Player::update(RenderWindow& wn, Time game_time)
 {
 	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
 	{
@@ -8,19 +8,19 @@ void Player::update(RenderWindow& wn, Clock game_timer)
 		this->speed = PLAYER_SPEED;
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::E) && this->can_dash(game_timer)) //Dash
+	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.is_up(game_time)) //Dash
 	{
 		this->dashing = 1;
-		this->dash_timer = game_timer.getElapsedTime();
+		this->dash.timer = game_time;
 		this->target_pos = new Vector2i(this->get_component(Mouse::getPosition(wn), DASH_DISTANCE)); //Allocate a new Vector2i pointer pointing to a mouse position
 		this->speed = DASH_SPEED;
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Q) && this->can_shoot(game_timer)) //Shoot
+	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.is_up(game_time)) //Shoot
 	{
-		this->shoot_timer = game_timer.getElapsedTime();
+		this->shoot.timer = game_time;
 		float angle = get_angle(this->object.getPosition(), Mouse::getPosition(wn));
-		this->shoot(angle);
+		this->fire(angle);
 	}
 
 	if (this->target_pos) //Check if player has reach target
@@ -40,6 +40,7 @@ void Player::update(RenderWindow& wn, Clock game_timer)
 			this->dashing = 0;
 		}
 	}
+
 	wn.draw(this->object);
 
 	//Update player bullets
@@ -54,7 +55,7 @@ void Player::update(RenderWindow& wn, Clock game_timer)
 	}
 }
 
-void Player::shoot(float angle) //Create a new bullet and add it to player list
+void Player::fire(float angle) //Create a new bullet and add it to player list
 {
 	Bullet bullet = Bullet(*this, angle);
 	bullet.set_target();//Set the bullet target_destination
@@ -62,17 +63,12 @@ void Player::shoot(float angle) //Create a new bullet and add it to player list
 	this->bullets.push_back(bullet);
 }
 
-bool Player::can_shoot(Clock game_timer) //Check if player can shoot
-{
-	return game_timer.getElapsedTime() - shoot_timer >= SHOOT_CD;
-}
-
-bool Player::can_dash(Clock game_timer) //Check if player can dash
-{
-	return game_timer.getElapsedTime() - dash_timer >= DASH_CD;
-}
-
 std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's bullets
 {
 	return this->bullets;
+}
+
+bool Ability::is_up(Time game_time)
+{
+	return game_time - this->timer >= this->CD;
 }

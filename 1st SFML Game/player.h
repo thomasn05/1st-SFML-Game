@@ -2,13 +2,21 @@
 #include "bullet.h"
 #include <vector>
 
+#pragma once
 const int PLAYER_SPEED = 5;
 const int DASH_SPEED = 10;
 const int DASH_DISTANCE = 50;
 const Time SHOOT_CD = seconds(1);
 const Time DASH_CD = seconds(3);
+const Time WALL_CD = seconds(5);
 
-#pragma once
+struct Ability
+{
+    Time timer;
+    Time CD;
+    bool is_up(Time game_time);
+};
+
 class Player :
     public Entity
 {
@@ -16,8 +24,9 @@ private:
     Vector2i *target_pos = nullptr;
     int speed = PLAYER_SPEED;
     std::vector<Bullet> bullets; //Player bullets
-    Time dash_timer = seconds(0);
-    Time shoot_timer = seconds(0);
+    Ability shoot = { seconds(0), SHOOT_CD };
+    Ability dash = { seconds(0), DASH_CD };
+    Ability wall = { seconds(0), WALL_CD };
     bool dashing = 0;
 
 public:
@@ -32,32 +41,14 @@ public:
     * @param wn: the window to draw the player on
     * @param game_timer: the time of the game
     */
-    void update(RenderWindow& wn, Clock game_timer);//Update the player positon and draws them on screen
+    void update(RenderWindow& wn, Time game_time);//Update the player positon and draws them on screen
 
     /*
     * @brief Player's shoot ability
     * @param angle: the angle of the bullet in radians
     */
-    void shoot(float angle); //Shoot
+    void fire(float angle); //Shoot
      
-    /*
-    * @brief check if the player's shoot ability is up
-    * @param game_timer: time of the game
-    * @return True if player shoot ability is up
-    */
-    bool can_shoot(Clock game_timer);
-
-    /*
-    * @brief check if the player's dash ability is up
-    * @param game_timer: time of the game
-    * @return True if player dash ability is up
-    */
-    bool can_dash(Clock game_timer);
-
-    /*
-    * @brief returns a reference to the player curremt bullet vector
-    * @return a reference to player bullet vector
-    */
     std::vector<Bullet>& get_bullets();
 
     //TODO: Player abilities - wall
