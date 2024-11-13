@@ -1,5 +1,6 @@
 #include "player.h"
 #include "EnemyManager.h"
+#include <iostream>
 
 const int win_width = 1400;
 const int win_height = 1000;
@@ -20,6 +21,15 @@ void draw_end_screen(Font font, RenderWindow& wn)
     end_text.setPosition(end_text_spawn);
 
     wn.draw(end_text);
+}
+
+void keep_mouse_in_bound(RenderWindow& wn)
+{
+    Vector2i pos = Mouse::getPosition(wn);
+    int x_pos = std::max(0, std::min(win_width, pos.x));
+    int y_pos = std::max(0,std::min(win_height, pos.y));
+
+    Mouse::setPosition(Vector2i(x_pos, y_pos), wn);
 }
 
 int main()
@@ -43,6 +53,8 @@ int main()
         }
 
         window.clear();
+
+        keep_mouse_in_bound(window);
 
         if (!player.is_dead())
         {
