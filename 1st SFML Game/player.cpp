@@ -2,25 +2,21 @@
 
 void Player::update(RenderWindow& wn, Time game_time)
 {
+	Vector2i mouse_pos = Mouse::getPosition(wn);
 	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
 	{
-		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Allocate a new Vector2i pointer pointing to a mouse position
+		this->target_pos = &mouse_pos; //Allocate a new Vector2i pointer pointing to a mouse position
 		this->speed = PLAYER_SPEED;
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.is_up(game_time)) //Dash
 	{
-		this->dashing = 1;
-		this->dash.timer = game_time;
-		this->target_pos = new Vector2i(this->get_component(Mouse::getPosition(wn), DASH_DISTANCE)); //Allocate a new Vector2i pointer pointing to a mouse position
-		this->speed = DASH_SPEED;
+		e_ability(mouse_pos);
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.is_up(game_time)) //Shoot
 	{
-		this->shoot.timer = game_time;
-		float angle = get_angle(this->object.getPosition(), Mouse::getPosition(wn));
-		this->fire(angle);
+		this->q_ability(mouse_pos);
 	}
 
 	if (this->target_pos) //Check if player has reach target
@@ -55,12 +51,20 @@ void Player::update(RenderWindow& wn, Time game_time)
 	}
 }
 
-void Player::fire(float angle) //Create a new bullet and add it to player list
+void Player::q_ability(Vector2i mouse_pos) //Create a new bullet and add it to player list
 {
+	float angle = get_angle(this->object.getPosition(), mouse_pos);
 	Bullet bullet = Bullet(*this, angle);
 	bullet.set_target();//Set the bullet target_destination
 
 	this->bullets.push_back(bullet);
+}
+
+void Player::e_ability(Vector2i mouse_pos)
+{
+	this->dashing = 1;
+	this->target_pos = new Vector2i(this->get_component(mouse_pos, DASH_DISTANCE)); //Allocate a new Vector2i pointer pointing to a mouse position
+	this->speed = DASH_SPEED;
 }
 
 std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's bullets
@@ -70,5 +74,11 @@ std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's 
 
 bool Ability::is_up(Time game_time)
 {
-	return game_time - this->timer >= this->CD;
+	if (game_time - this->timer >= this->CD) 
+	{
+		this->timer = game_time; 
+		return 1;
+	}
+
+	return 0;
 }

@@ -42,12 +42,14 @@ public:
     * @param game_timer: the time of the game
     */
     void update(RenderWindow& wn, Time game_time);//Update the player positon and draws them on screen
-
+        
     /*
     * @brief Player's shoot ability
     * @param angle: the angle of the bullet in radians
     */
-    void fire(float angle); //Shoot
+    void q_ability(Vector2i mouse_pos); //Shoot
+
+    void e_ability(Vector2i mouse_pos);
      
     std::vector<Bullet>& get_bullets();
 
