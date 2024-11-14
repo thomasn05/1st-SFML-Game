@@ -15,12 +15,12 @@ void Player::update(RenderWindow& wn, Time game_time)
 		this->e_ability(mouse_pos);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::W) ) //Shoot
+	if (Keyboard::isKeyPressed(Keyboard::W) && this->wall.is_up(game_time)) //wall
 	{
 		this->w_ability(mouse_pos);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Q) ) //Shoot
+	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.is_up(game_time)) //Shoot
 	{
 		this->q_ability(mouse_pos);
 	}
@@ -45,6 +45,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 
 	wn.draw(this->object);
 
+	if (game_time - this->wall.timer >= this->player_wall.lifespan) { this->player_wall.lifespan = seconds(0); }
 	this->player_wall.update(wn);
 
 	//Update player bullets
