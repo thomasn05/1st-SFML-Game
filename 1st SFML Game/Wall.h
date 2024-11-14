@@ -11,12 +11,12 @@ class Wall :
 {
 private:
     int speed = WALL_SPEED;
-    Vector2f target_pos;
+    Vector2i target_pos;
 
 public:
-    Wall(Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue) { this->lifespan = seconds(0); }
+    Wall(Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue) {this->lifespan = seconds(0); }
 
-    void set_target(Vector2f new_pos);
+    void set_target(Vector2i new_pos);
 
     void update(RenderWindow& wn);
 };

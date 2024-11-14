@@ -8,7 +8,7 @@ const int DASH_SPEED = 10;
 const int DASH_DISTANCE = 50;
 const Time SHOOT_CD = seconds(1);
 const Time DASH_CD = seconds(3);
-const Time WALL_CD = seconds(5);
+const Time WALL_CD = seconds(8);
 
 /*
 * @brief Represent the ability of the player
