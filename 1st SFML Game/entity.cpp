@@ -17,12 +17,19 @@ void Entity::move(Vector2i target, int speed)
 	this->object.setPosition(new_pos);
 }
 
-bool Entity::collide(Entity other) const
+bool Entity::collided_with(Entity other) const
 {
 	FloatRect this_bounds = this->object.getGlobalBounds();
 	FloatRect other_bounds = other.object.getGlobalBounds();
 
 	return this_bounds.intersects(other_bounds); //Check if the boundds intersect
+}
+
+Vector2f Entity::collision_pos(Entity other)
+{
+	FloatRect intersection;
+	this->object.getGlobalBounds().intersects(other.object.getGlobalBounds(), intersection);
+	return Vector2f(intersection.left, intersection.top);
 }
 
 Vector2f Entity::get_component(Vector2i target, int distance) const 

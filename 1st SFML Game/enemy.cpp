@@ -38,7 +38,7 @@ bool Enemy::is_dead(std::vector<Bullet>& player_bullets) //Check if enemy has co
 {
 	for (auto b = player_bullets.begin(); b !=player_bullets.end();)
 	{
-		if (this->collide(*b)) //If collide remove the bullet from player's bullets and kill this enemy
+		if (this->collided_with(*b)) //If collide remove the bullet from player's bullets and kill this enemy
 		{
 			player_bullets.erase(b);
 			this->kill();
