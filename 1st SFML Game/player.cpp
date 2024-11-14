@@ -6,7 +6,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 
 	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
 	{
-		this->target_pos = &mouse_pos; //Set the target pos pointer to the mouse_pos address
+		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Set the target pos pointer to the mouse_pos address
 		this->speed = PLAYER_SPEED;
 	}
 
