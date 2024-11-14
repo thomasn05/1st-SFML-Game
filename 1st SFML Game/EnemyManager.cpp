@@ -10,10 +10,10 @@ void EnemyManager::update(RenderWindow& wn, Time game_time)
 
 	for (auto e = this->enemies.begin(); e != this->enemies.end();) //Chec for player collision and bullet collsion for each enemy on screen
 	{
-		if (e->collide(this->player)) { this->player.kill(); }
+		if (e->collide(this->player)) { this->player.kill(); } //Kill player if enemy collide with it
 
 		auto& player_bullets = this->player.get_bullets();
-		if (e->is_dead(player_bullets)) { e = this->enemies.erase(e); }
+		if (e->is_dead(player_bullets)) { e = this->enemies.erase(e); } //Kill enenemy and remove bullet if they collide
 		else
 		{
 			e->update(wn, this->player);

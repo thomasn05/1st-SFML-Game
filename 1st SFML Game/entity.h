@@ -44,8 +44,14 @@ public:
 	*/
 	Vector2f get_component(Vector2i target, int distance) const; //Get the x and y component distance from the entity to
 
+	/*
+	* @brief check if the Entity object lifespan is 0s
+	*/
 	bool is_dead();
 
+	/*
+	* @brief kill the Entity object by setting its lifespan to 0s
+	*/
 	void kill();
 };
 
@@ -65,4 +71,9 @@ float get_angle(Vector2f point1, Vector2i point2); //Get the angle from the enti
 */
 bool point_collide(Vector2f p1, Vector2i p2); //Check if two point are colliding
 
+/*
+* @brief converts a radian to a degree
+* @param radian: the angle in radian
+* @return the angle in degrees
+*/
 float radians_to_degree(float radians);

@@ -6,7 +6,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 
 	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
 	{
-		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Set the target pos pointer to the mouse_pos address
+		this->target_pos = new Vector2i(Mouse::getPosition(wn)); //Allow a new Vector for the mouse position 
 		this->speed = PLAYER_SPEED;
 	}
 
@@ -45,7 +45,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 
 	wn.draw(this->object);
 
-	if (game_time - this->wall.timer >= this->player_wall.lifespan) { this->player_wall.kill(); }
+	if (game_time - this->wall.timer >= this->player_wall.lifespan) { this->player_wall.kill(); } //update the player's wall Entity
 	this->player_wall.update(wn);
 
 	//Update player bullets
@@ -69,14 +69,16 @@ void Player::q_ability(Vector2i mouse_pos) //Create a new bullet and add it to p
 	this->bullets.push_back(bullet);
 }
 
-void Player::w_ability(Vector2i mouse_pos)
+void Player::w_ability(Vector2i mouse_pos) //The wall ability
 {
 	this->player_wall.lifespan = WALL_LIFESPAN;
+
 	float angle = get_angle(this->object.getPosition(), mouse_pos);
-	Vector2f wall_spawn = bullet_spawn(*this, angle);
-	this->player_wall.object.setPosition(wall_spawn);
-	this->player_wall.object.setRotation(radians_to_degree(angle));
-	Vector2f target = this->player_wall.get_component(mouse_pos, MAX_WALL_DISTANCE);
+	Vector2f wall_spawn = bullet_spawn(*this, angle); //spawn the wall infront of the player 
+	this->player_wall.object.setPosition(wall_spawn); //Set the position of the wall to be infron of the player
+	this->player_wall.object.setRotation(radians_to_degree(angle)); //Rotate the wall to be horizontal
+
+	Vector2f target = this->player_wall.get_component(mouse_pos, MAX_WALL_DISTANCE); //Target pos MAX_WALL_DISTANCE away from the player
 	this->player_wall.set_target((Vector2i)target);
 }
 
@@ -92,9 +94,9 @@ std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's 
 	return this->bullets;
 }
 
-bool Ability::is_up(Time game_time)
+bool Ability::is_up(Time game_time) // Check if an ability's cooldown is up
 {
-	if (game_time - this->timer >= this->CD) 
+	if (game_time - this->timer >= this->CD)  //Check if enough time has passes
 	{
 		this->timer = game_time; 
 		return 1;

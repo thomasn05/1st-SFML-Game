@@ -9,7 +9,7 @@ void Wall::update(RenderWindow& wn)
 {
 	if (!this->is_dead()) 
 	{
-		if (!point_collide(this->object.getPosition(), this->target_pos)) 
+		if (!point_collide(this->object.getPosition(), this->target_pos)) //Keep moving it until it reaches the target
 		{ 
 			this->move(this->target_pos, this->speed); 
 		}
