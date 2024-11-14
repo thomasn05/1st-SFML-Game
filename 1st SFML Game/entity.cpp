@@ -42,6 +42,11 @@ bool Entity::is_dead()
 	return this->lifespan == seconds(0);
 }
 
+void Entity::kill()
+{
+	this->lifespan = seconds(0);
+}
+
 float get_angle(Vector2f point1, Vector2i point2)
 {
 	float dx = point1.x - point2.x; //Get their difference in x and y

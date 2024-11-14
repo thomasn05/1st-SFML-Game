@@ -41,7 +41,7 @@ bool Enemy::is_dead(std::vector<Bullet>& player_bullets) //Check if enemy has co
 		if (this->collide(*b)) //If collide remove the bullet from player's bullets and kill this enemy
 		{
 			player_bullets.erase(b);
-			this->lifespan = seconds(0);
+			this->kill();
 			break;
 		}
 

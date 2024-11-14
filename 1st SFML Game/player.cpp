@@ -45,7 +45,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 
 	wn.draw(this->object);
 
-	if (game_time - this->wall.timer >= this->player_wall.lifespan) { this->player_wall.lifespan = seconds(0); }
+	if (game_time - this->wall.timer >= this->player_wall.lifespan) { this->player_wall.kill(); }
 	this->player_wall.update(wn);
 
 	//Update player bullets

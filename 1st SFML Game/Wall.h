@@ -14,7 +14,7 @@ private:
     Vector2i target_pos;
 
 public:
-    Wall(Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue) {this->lifespan = seconds(0); }
+    Wall(Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue) {this->kill(); }
 
     void set_target(Vector2i new_pos);
 

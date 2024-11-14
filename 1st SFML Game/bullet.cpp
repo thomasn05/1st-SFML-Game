@@ -16,7 +16,7 @@ Vector2f bullet_spawn(Entity host, float angle)
 void Bullet::update(RenderWindow& wn) //Draw and check when target is reach
 {
 	bool reach_dest = point_collide(this->object.getPosition(), this->target_pos);
-	if (reach_dest) { this->lifespan = seconds(0); } //No longer will be in player bullet list
+	if (reach_dest) { this->kill(); } //No longer will be in player bullet list
 	else { this->move(this->target_pos, this->speed); }
 	wn.draw(this->object);
 }

@@ -45,6 +45,8 @@ public:
 	Vector2f get_component(Vector2i target, int distance) const; //Get the x and y component distance from the entity to
 
 	bool is_dead();
+
+	void kill();
 };
 
 /*
