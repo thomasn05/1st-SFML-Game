@@ -15,7 +15,12 @@ void Player::update(RenderWindow& wn, Time game_time)
 		this->e_ability(mouse_pos);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.is_up(game_time)) //Shoot
+	if (Keyboard::isKeyPressed(Keyboard::W) ) //Shoot
+	{
+		this->w_ability(mouse_pos);
+	}
+
+	if (Keyboard::isKeyPressed(Keyboard::Q) ) //Shoot
 	{
 		this->q_ability(mouse_pos);
 	}
@@ -39,6 +44,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 	}
 
 	wn.draw(this->object);
+	this->player_wall.update(wn);
 
 	//Update player bullets
 	for (auto b = this->bullets.begin(); b != this->bullets.end();)
@@ -59,6 +65,14 @@ void Player::q_ability(Vector2i mouse_pos) //Create a new bullet and add it to p
 	bullet.set_target();//Set the bullet target_destination
 
 	this->bullets.push_back(bullet);
+}
+
+void Player::w_ability(Vector2i mouse_pos)
+{
+	float angle = get_angle(this->object.getPosition(), mouse_pos);
+	Vector2f wall_spawn = bullet_spawn(*this, angle);
+	this->player_wall.object.setPosition(wall_spawn);
+	this->player_wall.object.setRotation(radians_to_degree(angle));
 }
 
 void Player::e_ability(Vector2i mouse_pos) //Dash ability

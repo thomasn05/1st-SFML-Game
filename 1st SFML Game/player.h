@@ -1,5 +1,5 @@
-#include "entity.h"
 #include "bullet.h"
+#include "wall.h"
 #include <vector>
 
 #pragma once
@@ -31,12 +31,15 @@ class Player :
 {
 private:
     Vector2i *target_pos = nullptr; // @brief points to the pos that the player is heading towards (null if not moving)
-    int speed = PLAYER_SPEED;
+    int speed = PLAYER_SPEED;\
+    bool dashing = 0; // @brief 1 is player is currently dashing 0 if not
+
     std::vector<Bullet> bullets; //@brief Player bullets
+    Wall player_wall = Wall(*this);
+
     Ability shoot = { seconds(0), SHOOT_CD }; // @brief represent player's shoot ability
     Ability dash = { seconds(0), DASH_CD }; // @brief represent player's dash ability
     Ability wall = { seconds(0), WALL_CD }; // @brief represent player's wall ability
-    bool dashing = 0; // @brief 1 is player is currently dashing 0 if not
 
 public:
     /*
@@ -56,7 +59,9 @@ public:
     * @brief Player's shoot ability
     * @param mouse_pos: the mouse position relative to game window
     */
-    void q_ability(Vector2i mouse_pos); //Shoot
+    void q_ability(Vector2i mouse_pos); //Shoot\
+
+    void w_ability(Vector2i mous_pos);
 
     /*
     * @brief Player's dash ability

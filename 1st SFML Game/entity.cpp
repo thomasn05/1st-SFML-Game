@@ -56,3 +56,8 @@ bool point_collide(Vector2f p1, Vector2i p2)
 {
 	return (abs(p1.x - p2.x) < 3) && (abs(p1.y - p2.y) < 3);  //Check the player and the target pos (usually a mouse position) is within 3 pixel of each other
 }
+
+float radians_to_degree(float radians)
+{
+	return (radians * 180 / 3.14f) - 90;
+}

@@ -1,4 +1,4 @@
-#include "Wall.h"
+#include "wall.h"
 
 void Wall::update(RenderWindow& wn)
 {

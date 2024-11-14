@@ -11,11 +11,10 @@ class Wall :
 {
 private:
     int speed = WALL_SPEED;
-    Entity player;
 
 
 public:
-    Wall(Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue), player(host) {};
+    Wall(Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue) {}
 
     void update(RenderWindow& wn);
 };

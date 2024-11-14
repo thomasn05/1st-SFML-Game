@@ -62,3 +62,5 @@ float get_angle(Vector2f point1, Vector2i point2); //Get the angle from the enti
 * @return True if collide, False if not
 */
 bool point_collide(Vector2f p1, Vector2i p2); //Check if two point are colliding
+
+float radians_to_degree(float radians);

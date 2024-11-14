@@ -27,7 +27,7 @@ public:
     * @param host: the Entity that fired the bullett (used to determine spawn)
     * @param angle: angle that the bullet will be facing
     */
-    Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), BULLET_SIZE, Color::White, (angle * 180 / 3.14f) - 90), angle(angle) {} //Construtor
+    Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), BULLET_SIZE, Color::White, radians_to_degree(angle)), angle(angle) {} //Construtor
     
     /*
     *@brief update the Bullet state moving it if it is alive (become dead if it has reach it target)
