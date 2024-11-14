@@ -2,8 +2,8 @@
 #include "entity.h"
 #include "player.h"
 
-const float spawn_dist = 200; // @brief how far the enemy will spawn from the player
-const Vector2f size = Vector2f(25, 25);
+const float SPAWN_DISTANCE = 200; // @brief how far the enemy will spawn from the player
+const Vector2f ENEMY_SIZE = Vector2f(25, 25);
 const int ENEMY_SPEED = 3;
 
 /*
@@ -32,7 +32,7 @@ public:
     *@brief Create an Enemy Entity at a given spawn
     * @param spawn: thhe spawning location of Enenmy
     */
-    Enemy(Vector2f spawn) : Entity(spawn, size, Color::Red) { this->lifespan = seconds(1); }
+    Enemy(Vector2f spawn) : Entity(spawn, ENEMY_SIZE, Color::Red) { this->lifespan = seconds(1); }
 
     /*
     * @brief update the Enemy object to move towards the player

@@ -14,7 +14,7 @@ int coord(float coord, int range) //Generate a pos in range away from coord
 
 		pos = distrib(gen);
 
-		if (abs(pos - coord) >= spawn_dist) { break; }
+		if (abs(pos - coord) >= SPAWN_DISTANCE) { break; }
 	}
 
 	return pos;
