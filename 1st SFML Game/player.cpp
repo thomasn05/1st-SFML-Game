@@ -3,7 +3,6 @@
 
 void Player::update(RenderWindow& wn, Time game_time)
 {
-	Vector2i mouse_pos = Mouse::getPosition(wn);//Get the current mouse position relative to game window
 
 	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
 	{
@@ -11,6 +10,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 		this->speed = PLAYER_SPEED;
 	}
 
+	Vector2i mouse_pos = Mouse::getPosition(wn);//Get the current mouse position relative to game window
 	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.is_up(game_time)) //Dash
 	{
 		this->e_ability(mouse_pos);
@@ -28,6 +28,9 @@ void Player::update(RenderWindow& wn, Time game_time)
 
 	if (this->target_pos) //Check if player has reach target
 	{
+		float angle = get_angle(this->object.getPosition(), *this->target_pos);
+		this->object.setRotation(radians_to_degree(angle));
+
 		Vector2f curr = this->object.getPosition(); //The curr player postion
 		bool reach_dest = point_collide(curr, *(this->target_pos));
 
@@ -46,7 +49,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 
 	wn.draw(this->object);
 
-	if (game_time - this->wall.timer >= this->player_wall.lifespan) { this->player_wall.kill(); } //update the player's wall Entity
+	//if (game_time - this->wall.timer >= this->player_wall.lifespan) { this->player_wall.kill(); } //update the player's wall Entity
 	this->player_wall.update(wn);
 
 	//Update player bullets
