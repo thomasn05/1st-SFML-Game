@@ -137,6 +137,7 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="helper_func.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="wall.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="helper_func.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="wall.h" />
   </ItemGroup>
