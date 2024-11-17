@@ -53,4 +53,6 @@ public:
 	* @brief kill the Entity object by setting its lifespan to 0s
 	*/
 	void kill();
+
+	std::vector<Vector2f> get_corners();
 };

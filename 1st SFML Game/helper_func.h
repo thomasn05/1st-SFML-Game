@@ -27,3 +27,12 @@ bool point_collide(Vector2f p1, Vector2i p2); //Check if two point are colliding
 */
 float radians_to_degree(float radians);
 
+//SAT collision detection
+float dot_product(Vector2f v1, Vector2f v2);
+
+std::pair<float, float> project(std::vector<Vector2f> corners, Vector2f axis);
+
+bool overlap(std::pair<float, float> proj1, std::pair<float, float> proj2);
+
+bool SAT_Collision(RectangleShape rect1, RectangleShape rect2);
+
