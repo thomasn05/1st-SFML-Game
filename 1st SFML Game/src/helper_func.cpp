@@ -20,3 +20,23 @@ float radians_to_degree(float radians)
 	return (radians * 180 / 3.14f) - 90;
 }
 
+//float dot_product(Vector2f v1, Vector2f v2)
+//{
+//	return 0.0f;
+//}
+//
+//std::pair<float, float> project(std::vector<Vector2f> corners, Vector2f axis)
+//{
+//	return std::pair<float, float>();
+//}
+//
+//bool overlap(std::pair<float, float> proj1, std::pair<float, float> proj2)
+//{
+//	return false;
+//}
+//
+//bool SAT_Collision(RectangleShape rect1, RectangleShape rect2)
+//{
+//	return false;
+//}
+

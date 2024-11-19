@@ -54,5 +54,5 @@ public:
 	*/
 	void kill();
 
-	std::vector<Vector2f> get_corners();
+	/*std::vector<Vector2f> get_corners();*/
 };

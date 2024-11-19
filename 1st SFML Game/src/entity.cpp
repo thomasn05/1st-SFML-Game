@@ -55,3 +55,11 @@ void Entity::kill()
 {
 	this->lifespan = seconds(0);
 }
+
+//std::vector<Vector2f> Entity::get_corners()
+//{
+//	std::vector<Vector2f> corners;
+//	Transform transform = this->object.getTransform();
+//
+//
+//}
