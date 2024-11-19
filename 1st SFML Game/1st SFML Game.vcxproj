@@ -37,6 +37,9 @@
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\wall.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

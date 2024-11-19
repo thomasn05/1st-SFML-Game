@@ -56,10 +56,16 @@ void Entity::kill()
 	this->lifespan = seconds(0);
 }
 
-//std::vector<Vector2f> Entity::get_corners()
-//{
-//	std::vector<Vector2f> corners;
-//	Transform transform = this->object.getTransform();
-//
-//
-//}
+std::vector<Vector2f> Entity::get_corners()
+{
+	std::vector<Vector2f> corners;
+	Transform transform = this->object.getTransform();
+	FloatRect bounds = this->object.getLocalBounds();
+
+	corners.push_back(transform.transformPoint(Vector2f(bounds.left, bounds.top)));
+	corners.push_back(transform.transformPoint(Vector2f(bounds.width, bounds.top)));
+	corners.push_back(transform.transformPoint(Vector2f(bounds.left, bounds.height)));
+	corners.push_back(transform.transformPoint(Vector2f(bounds.width, bounds.height)));
+
+	return corners;
+}
