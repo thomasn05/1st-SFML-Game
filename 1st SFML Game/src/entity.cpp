@@ -60,12 +60,12 @@ std::vector<Vector2f> Entity::get_corners()
 {
 	std::vector<Vector2f> corners;
 	Transform transform = this->object.getTransform();
-	FloatRect bounds = this->object.getLocalBounds();
+	Vector2f size = this->object.getSize();
 
-	corners.push_back(transform.transformPoint(Vector2f(bounds.left, bounds.top)));
-	corners.push_back(transform.transformPoint(Vector2f(bounds.width, bounds.top)));
-	corners.push_back(transform.transformPoint(Vector2f(bounds.left, bounds.height)));
-	corners.push_back(transform.transformPoint(Vector2f(bounds.width, bounds.height)));
+	corners.push_back(transform.transformPoint(Vector2f(-size.x / 2, -size.y / 2)));
+	corners.push_back(transform.transformPoint(Vector2f(size.x / 2, -size.y / 2)));
+	corners.push_back(transform.transformPoint(Vector2f(size.x / 2, size.y / 2)));
+	corners.push_back(transform.transformPoint(Vector2f(-size.x / 2, size.y / 2)));
 
 	return corners;
 }
