@@ -24,6 +24,6 @@ public:
 	* @param wn: the game window to draw the bullet on
 	* @param game_time: the curr time of the game (used for spawning)
 	*/
-	void update(RenderWindow &wn, Time game_time);
+	void update(RenderWindow& wn, const Time& game_time);
 };
 

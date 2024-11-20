@@ -41,9 +41,8 @@ int main()
     if (!font.loadFromFile("arial.ttf")) { return -1; }
 
     Player player(player_spawn);
-    Entity object(Vector2f(100, 100), Vector2f(50, 50), Color::Blue);
     
-    //EnemyManager E_manager(player);
+    EnemyManager e_manager(player);
 
     while (window.isOpen())
     {
@@ -62,16 +61,9 @@ int main()
         {
             player.update(window, game_timer.getElapsedTime());
             player.object.setFillColor(Color::Green);
-            //E_manager.update(window, game_timer.getElapsedTime());
-
-            if (SAT_Collision(player.get_corners(), object.get_corners()))
-            {
-                player.object.setFillColor(Color::Red);
-            }
+            e_manager.update(window, game_timer.getElapsedTime());
         }
         else { draw_end_screen(font, window); }
-
-        window.draw(object.object);
 
         window.display();
     }

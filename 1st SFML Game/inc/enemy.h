@@ -12,14 +12,14 @@ const int ENEMY_SPEED = 3;
 * @param range: the range of the new cord
 * @return a new coord
 */
-int coord(float coord, int range);
+int coord(const float coord, const int range);
 
 /*
 * @brief Create a spawning vector around the player
 * @param player: a Player object to generate a new position around
 * @return a Vector position
 */
-Vector2f spawn(Player player);
+Vector2f spawn(const Player& player);
 
 class Enemy :
     public Entity
@@ -37,7 +37,7 @@ public:
     /*
     * @brief update the Enemy object to move towards the player
     */
-    void update(RenderWindow& wn, Player player);
+    void update(RenderWindow& wn, const Player& player);
 
     /*
     * @brief check if the Enemy object has collide with a player bullet. If it has collide it will delete the bullet from the vector and kill the Enemy.

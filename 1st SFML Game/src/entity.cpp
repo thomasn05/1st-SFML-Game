@@ -1,6 +1,6 @@
 #include "entity.h"
 
-Entity::Entity(Vector2f position, Vector2f size, Color color, float angle) //Constructor
+Entity::Entity(const Vector2f& position, const Vector2f& size, const Color color, const float angle) //Constructor
 {
 	//Setup the RectangleShape
 	this->object.setSize(size);
@@ -10,14 +10,14 @@ Entity::Entity(Vector2f position, Vector2f size, Color color, float angle) //Con
 	this->object.setRotation(angle);
 }
 
-void Entity::move(Vector2i target, int speed)
+void Entity::move(const Vector2i& target, const int speed)
 {
 	Vector2f new_pos = this->get_component(target, speed);
 
 	this->object.setPosition(new_pos);
 }
 
-bool Entity::collided_with(Entity other) const
+bool Entity::collided_with(const Entity& other) const
 {
 	FloatRect this_bounds = this->object.getGlobalBounds();
 	FloatRect other_bounds = other.object.getGlobalBounds();
@@ -46,7 +46,7 @@ Vector2f Entity::get_component(Vector2i target, int distance) const
 	return Vector2f(new_x, new_y);
 }
 
-bool Entity::is_dead()
+bool Entity::is_dead() const
 {
 	return this->lifespan == seconds(0);
 }
@@ -56,7 +56,7 @@ void Entity::kill()
 	this->lifespan = seconds(0);
 }
 
-std::vector<Vector2f> Entity::get_corners()
+std::vector<Vector2f> Entity::get_corners() const
 {
 	std::vector<Vector2f> corners;
 	Transform transform = this->object.getTransform();

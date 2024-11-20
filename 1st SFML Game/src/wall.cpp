@@ -1,6 +1,6 @@
 #include "wall.h"
 
-void Wall::set_target(Vector2i new_pos)
+void Wall::set_target(const Vector2i& new_pos)
 {
 	this->target_pos = new_pos;
 }

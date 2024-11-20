@@ -17,7 +17,7 @@ public:
 	* @param color: color of Entity
 	* @param angle: the rotation of the Entity
 	*/
-	Entity(Vector2f position, Vector2f size, Color color, float angle = 0);
+	Entity(const Vector2f& position, const Vector2f& size, const Color color, const float angle = 0);
 	~Entity() = default; //Destructor
 
 	/*
@@ -25,14 +25,14 @@ public:
 	* @param target: the target position where the Entity is moving towards (usually a mouse position which is represented in Vector2i)
 	* @param speed: how much the Entity should move each frame
 	*/
-	void move(Vector2i target, int speed);
+	void move(const Vector2i& target, const int speed);
 
 	/*
 	* @breif Check for collision between two Entity
 	* @param other: another Entity object
 	* @return True if collided, False if not
 	*/
-	bool collided_with(Entity other) const; //Collision Detection
+	bool collided_with(const Entity& other) const; //Collision Detection
 
 	//Vector2f collision_pos(Entity other);
 
@@ -47,12 +47,12 @@ public:
 	/*
 	* @brief check if the Entity object lifespan is 0s
 	*/
-	bool is_dead();
+	bool is_dead() const;
 
 	/*
 	* @brief kill the Entity object by setting its lifespan to 0s
 	*/
 	void kill();
 
-	std::vector<Vector2f> get_corners();
+	std::vector<Vector2f> get_corners() const;
 };

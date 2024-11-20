@@ -1,7 +1,7 @@
 #include "player.h"
 #include <iostream>
 
-void Player::update(RenderWindow& wn, Time game_time)
+void Player::update(RenderWindow& wn, const Time& game_time)
 {
 
 	if (Mouse::isButtonPressed(Mouse::Right) && !this->dashing) //Move
@@ -64,7 +64,7 @@ void Player::update(RenderWindow& wn, Time game_time)
 	}
 }
 
-void Player::q_ability(Vector2i mouse_pos) //Create a new bullet and add it to player list
+void Player::q_ability(const Vector2i& mouse_pos) //Create a new bullet and add it to player list
 {
 	float angle = get_angle(this->object.getPosition(), mouse_pos);
 	Bullet bullet = Bullet(*this, angle);
@@ -73,7 +73,7 @@ void Player::q_ability(Vector2i mouse_pos) //Create a new bullet and add it to p
 	this->bullets.push_back(bullet);
 }
 
-void Player::w_ability(Vector2i mouse_pos) //The wall ability
+void Player::w_ability(const Vector2i& mouse_pos) //The wall ability
 {
 	this->player_wall.lifespan = WALL_LIFESPAN;
 
@@ -86,7 +86,7 @@ void Player::w_ability(Vector2i mouse_pos) //The wall ability
 	this->player_wall.set_target((Vector2i)target);
 }
 
-void Player::e_ability(Vector2i mouse_pos) //Dash ability
+void Player::e_ability(const Vector2i& mouse_pos) //Dash ability
 {
 	this->dashing = 1;
 	this->target_pos = new Vector2i(this->get_component(mouse_pos, DASH_DISTANCE)); //Allocate a new Vector2i pointer pointing to a mouse position
@@ -98,11 +98,11 @@ std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's 
 	return this->bullets;
 }
 
-bool Ability::is_up(Time game_time) // Check if an ability's cooldown is up
+bool Ability::is_up(const Time& game_time) // Check if an ability's cooldown is up
 {
 	if (game_time - this->timer >= this->CD)  //Check if enough time has passes
 	{
-		this->timer = game_time; 
+		this->timer = game_time;
 		return 1;
 	}
 

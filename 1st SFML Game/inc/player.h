@@ -23,7 +23,7 @@ struct Ability
     * @param game_time: the curr time of the game
     * @return True if it is up
     */
-    bool is_up(Time game_time);
+    bool is_up(const Time& game_time);
 };
 
 class Player :
@@ -31,7 +31,7 @@ class Player :
 {
 private:
     Vector2i *target_pos = nullptr; // @brief points to the pos that the player is heading towards (null if not moving)
-    int speed = PLAYER_SPEED;\
+    int speed = PLAYER_SPEED;
     bool dashing = 0; // @brief 1 is player is currently dashing 0 if not
 
     std::vector<Bullet> bullets; //@brief Player bullets
@@ -46,28 +46,28 @@ public:
     *@brief Constructor create a Player Entity
     * @param spawn: the starting location of the player
     */
-    Player(Vector2f spawn) : Entity(spawn, Vector2f(25, 25), Color::Green) {} //Constructor 
+    Player(const Vector2f& spawn) : Entity(spawn, Vector2f(25, 25), Color::Green) {} //Constructor 
 
     /*
     * @brief update the player movement and their abilities (dash, shoot, wall)
     * @param wn: the window to draw the player on
     * @param game_timer: the time of the game
     */
-    void update(RenderWindow& wn, Time game_time);//Update the player positon and draws them on screen
+    void update(RenderWindow& wn, const Time& game_time);//Update the player positon and draws them on screen
         
     /*
     * @brief Player's shoot ability
     * @param mouse_pos: the mouse position relative to game window
     */
-    void q_ability(Vector2i mouse_pos); //Shoot\
+    void q_ability(const Vector2i& mouse_pos); //Shoot\
 
-    void w_ability(Vector2i mous_pos);
+    void w_ability(const Vector2i& mouse_pos);
 
     /*
     * @brief Player's dash ability
     * @param mouse_pos: the mouse position relative to game window
     */
-    void e_ability(Vector2i mouse_pos);
+    void e_ability(const Vector2i& mouse_pos);
      
     /*
     * @brief return the reference to the player's bullets vector

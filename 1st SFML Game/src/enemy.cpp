@@ -2,7 +2,7 @@
 #include <random>
 #include <iostream>
 
-int coord(float coord, int range) //Generate a pos in range away from coord
+int coord(const float coord, const int range)//Generate a pos in range away from coord
 {
 	int pos;
 
@@ -20,7 +20,7 @@ int coord(float coord, int range) //Generate a pos in range away from coord
 	return pos;
 }
 
-Vector2f spawn(Player player) //Create a position Vector around the player
+Vector2f spawn(const Player& player) //Create a position Vector around the player
 {
 	float x_pos = (float)coord(player.object.getPosition().x, 1400); //Create x and y coord
 	float y_pos = (float)coord(player.object.getPosition().y, 1000);
@@ -28,7 +28,7 @@ Vector2f spawn(Player player) //Create a position Vector around the player
 	return Vector2f(x_pos, y_pos);
 }
 
-void Enemy::update(RenderWindow& wn, Player player) //Move enemy towards player
+void Enemy::update(RenderWindow& wn, const Player& player) //Move enemy towards player
 {
 	this->move((Vector2i)player.object.getPosition(), this->speed);
 	wn.draw(this->object);

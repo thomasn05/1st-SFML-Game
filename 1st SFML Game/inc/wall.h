@@ -18,13 +18,13 @@ public:
     * @brief Wall constructor: is initially dead
     * @param host: the Entity that created the wall
     */
-    Wall(Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue) {this->kill(); }
+    Wall(const Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue) { this->kill(); }
 
     /*
     * @brief change the target_pos of the wall
     * @param new_pos: the position of the new target
     */
-    void set_target(Vector2i new_pos);
+    void set_target(const Vector2i& new_pos);
 
     /*
     * @brief update the wall's movement and draw it to screen

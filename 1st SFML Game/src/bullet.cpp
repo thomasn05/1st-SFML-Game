@@ -1,7 +1,7 @@
 #include "bullet.h"
 #include <iostream>
 
-Vector2f bullet_spawn(Entity host, float angle)
+Vector2f bullet_spawn(const Entity& host, const float angle)
 {
 	RectangleShape host_rect = host.object;
 	float x_dist = ((host_rect.getSize().x) / 2.f) + (BULLET_SIZE.x / 2.f) + 5; //How far from the host distance the bullet need to spawn

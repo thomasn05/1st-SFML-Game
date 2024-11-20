@@ -11,7 +11,7 @@ const int BULLET_SPEED = 10;
 * @param angle: the angle of the Bullet
 * @return a Vector2f represent the spawning location of the Bullet
 */
-Vector2f bullet_spawn(Entity host, float angle);
+Vector2f bullet_spawn(const Entity& host, const float angle);
 
 class Bullet :
     public Entity
@@ -27,7 +27,7 @@ public:
     * @param host: the Entity that fired the bullett (used to determine spawn)
     * @param angle: angle that the bullet will be facing
     */
-    Bullet(Entity host, float angle) : Entity(bullet_spawn(host, angle), BULLET_SIZE, Color::White, radians_to_degree(angle)), angle(angle) {} //Construtor
+    Bullet(const Entity& host, const float angle) : Entity(bullet_spawn(host, angle), BULLET_SIZE, Color::White, radians_to_degree(angle)), angle(angle) {} //Construtor
     
     /*
     *@brief update the Bullet state moving it if it is alive (become dead if it has reach it target)

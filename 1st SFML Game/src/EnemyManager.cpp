@@ -1,6 +1,6 @@
 #include "EnemyManager.h"
 
-void EnemyManager::update(RenderWindow& wn, Time game_time)
+void EnemyManager::update(RenderWindow& wn, const Time& game_time)
 {
 	if (this->enemy_spawn.is_up(game_time) && this->enemies.size() < this->max) //Create an Enemy is store it in its vector after a certain time (capped at max)
 	{
