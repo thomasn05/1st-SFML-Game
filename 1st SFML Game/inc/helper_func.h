@@ -28,10 +28,33 @@ bool point_collide(Vector2f p1, Vector2i p2); //Check if two point are colliding
 float radians_to_degree(float radians);
 
 //SAT collision detection
-float dot_product(const Vector2f& v1, const Vector2f& v2);
 
+/*
+* @brief give the dot product of two vector
+* @param v1: vector 1
+* @param v2: vector 2
+* @return a scalar float
+*/
+float dot_product(const Vector2f& v1, const Vector2f& v2); //Use to find distance from corner point to edge norm axis
+
+/*
+* @brief project each corner onto the axis and return the maximum and minimum corner on that axis
+* @param corners: a vector contain all corners of a polygon
+* @param axis: a edge norm axis (perpendicular axis to the polygon's edges)
+* @return pair(min, max)
+*/
 std::pair<float, float> project(const std::vector<Vector2f>& corners, const Vector2f& axis);
 
+/*
+* @brief return a vector of the edge norm of the polygon
+* @param corners: the corners of the polygon
+* @return a vector contain the edge norms
+*/
 std::vector<Vector2f> get_edge(const std::vector<Vector2f>& corners);
 
+/*
+* @brief check for collision between to polygon using SAT
+* @param corners1: the corners of polygon 1
+* @param corners2: the corners of polygon 2
+*/
 bool SAT_Collision(const std::vector<Vector2f>& corners1, const std::vector<Vector2f>& corners2);
