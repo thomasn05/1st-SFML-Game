@@ -62,10 +62,10 @@ std::vector<Vector2f> Entity::get_corners()
 	Transform transform = this->object.getTransform();
 	Vector2f size = this->object.getSize();
 
-	corners.push_back(transform.transformPoint(Vector2f(-size.x / 2, -size.y / 2)));
-	corners.push_back(transform.transformPoint(Vector2f(size.x / 2, -size.y / 2)));
-	corners.push_back(transform.transformPoint(Vector2f(size.x / 2, size.y / 2)));
-	corners.push_back(transform.transformPoint(Vector2f(-size.x / 2, size.y / 2)));
+	corners.push_back(transform.transformPoint(Vector2f(0, 0)));
+	corners.push_back(transform.transformPoint(Vector2f(size.x, 0)));
+	corners.push_back(transform.transformPoint(Vector2f(size.x, size.y)));
+	corners.push_back(transform.transformPoint(Vector2f(0, size.y)));
 
 	return corners;
 }

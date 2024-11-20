@@ -63,7 +63,6 @@ bool SAT_Collision(const std::vector<Vector2f>& corners1, const std::vector<Vect
 	std::vector<Vector2f> edges1 = get_edge(corners1);
 	std::vector<Vector2f> edges2 = get_edge(corners2);
 
-	//std::vector<Vector2f> all_edges = edges1;
 	edges1.insert(edges1.end(), edges2.begin(), edges2.end());
 
 	for (auto& e : edges1)
