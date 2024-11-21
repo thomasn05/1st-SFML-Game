@@ -1,6 +1,5 @@
 #include "player.h"
 #include "EnemyManager.h"
-#include <iostream>
 
 const int win_width = 1400;
 const int win_height = 1000;

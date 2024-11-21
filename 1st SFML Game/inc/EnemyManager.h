@@ -1,5 +1,4 @@
 #include "enemy.h"
-#include <vector>
 
 const Time SPAWN_INTERVAL = milliseconds(500);
 

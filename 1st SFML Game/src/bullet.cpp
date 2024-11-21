@@ -1,5 +1,4 @@
 #include "bullet.h"
-#include <iostream>
 
 Vector2f bullet_spawn(const Entity& host, const float angle)
 {

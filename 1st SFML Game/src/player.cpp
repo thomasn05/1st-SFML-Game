@@ -1,5 +1,4 @@
 #include "player.h"
-#include <iostream>
 
 void Player::update(RenderWindow& wn, const Time& game_time)
 {

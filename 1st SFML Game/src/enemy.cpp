@@ -1,6 +1,5 @@
 #include "enemy.h"
 #include <random>
-#include <iostream>
 
 int coord(const float coord, const int range)//Generate a pos in range away from coord
 {
