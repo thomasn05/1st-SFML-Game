@@ -19,10 +19,7 @@ void Entity::move(const Vector2i& target, const int speed)
 
 bool Entity::collided_with(const Entity& other) const
 {
-	FloatRect this_bounds = this->object.getGlobalBounds();
-	FloatRect other_bounds = other.object.getGlobalBounds();
-
-	return this_bounds.intersects(other_bounds); //Check if the boundds intersect
+	return SAT_Collision(this->get_corners(), other.get_corners());
 }
 
 //Vector2f Entity::collision_pos(Entity other)
