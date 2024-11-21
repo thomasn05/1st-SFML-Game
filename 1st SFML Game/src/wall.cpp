@@ -19,3 +19,12 @@ void Wall::update(RenderWindow& wn, Time time_elasped)
 		wn.draw(this->object);
 	}
 }
+bool Wall::hit(Entity & other)
+{
+	if (!this->is_dead())
+	{
+		return other.collided_with(*this);
+	}
+	
+	else { return 0; }
+}

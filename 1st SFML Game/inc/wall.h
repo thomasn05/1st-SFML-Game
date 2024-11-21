@@ -31,5 +31,7 @@ public:
     * @param the window to draw it to
     */
     void update(RenderWindow& wn, Time time_elasped);
+
+    bool hit(Entity& other);
 };
 

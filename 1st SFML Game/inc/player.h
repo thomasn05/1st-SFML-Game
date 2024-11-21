@@ -16,7 +16,7 @@ struct Ability
 {
     Time CD; // @brief the cooldown of the ability
     Time timer = seconds(0); // @brief the current ability 
-    bool is_up = 1;
+    bool is_up = 1; //@brief state of ability 0 if on CD, 1 if UP
 
     /*
     * @brief Check if the ability is up (set the timer to game time if it is)

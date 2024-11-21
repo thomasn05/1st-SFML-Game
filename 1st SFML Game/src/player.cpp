@@ -54,7 +54,7 @@ void Player::update(RenderWindow& wn, const Time& game_time)
 	//Update player bullets
 	for (auto b = this->bullets.begin(); b != this->bullets.end();)
 	{
-		if (b->is_dead()) { b = this->bullets.erase(b); } //Remove if bullet is not alive
+		if (b->is_dead() || this->player_wall.hit(*b)) { b = this->bullets.erase(b); } //Remove if bullet is not alive
 		else 
 		{ 
 			b->update(wn);
@@ -70,7 +70,7 @@ void Player::q_ability(const float angle) //Create a new bullet and add it to pl
 
 	this->bullets.push_back(bullet);
 
-	this->shoot.is_up = 0;
+	this->shoot.is_up = 0; //Put Ability on CD
 }
 
 void Player::w_ability(const float angle) //The wall ability
@@ -85,7 +85,7 @@ void Player::w_ability(const float angle) //The wall ability
 	Vector2f target = this->object.getPosition() + target_dist;
 	this->player_wall.set_target((Vector2i)target);
 
-	this->wall.is_up = 0;
+	this->wall.is_up = 0; //Put Ability on CD
 }
 
 void Player::e_ability(const float angle) //Dash ability
@@ -95,7 +95,7 @@ void Player::e_ability(const float angle) //Dash ability
 	this->target_pos = new Vector2i(this->object.getPosition() + target_dist); //Allocate a new Vector2i pointer pointing to a mouse position
 	this->speed = DASH_SPEED;
 
-	this->dash.is_up = 0;
+	this->dash.is_up = 0; //Put Ability on CD
 }
 
 std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's bullets
