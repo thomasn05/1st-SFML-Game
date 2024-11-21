@@ -22,8 +22,8 @@ void Bullet::update(RenderWindow& wn) //Draw and check when target is reach
 
 void Bullet::set_target() //Set the target_pos
 {
-	Vector2f dist = dist_component(this->angle, MAX_BULLET_DISTANCE);
+	Vector2f dist = dist_component(this->angle, MAX_BULLET_DISTANCE); //Get the x and y component of the dist
 	Vector2f curr_pos = this->object.getPosition();
 
-	this->target_pos = Vector2i((int)(curr_pos.x + dist.x), (int)(curr_pos.y + dist.y)); //Convert to int 
+	this->target_pos = Vector2i((int)(curr_pos.x + dist.x), (int)(curr_pos.y + dist.y)); // Add component to curr_pos
 }

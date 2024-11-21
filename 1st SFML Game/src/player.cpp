@@ -10,19 +10,20 @@ void Player::update(RenderWindow& wn, const Time& game_time)
 	}
 
 	Vector2i mouse_pos = Mouse::getPosition(wn);//Get the current mouse position relative to game window
+	float angle = get_angle(this->object.getPosition(), mouse_pos);
 	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.is_up(game_time)) //Dash
 	{
-		this->e_ability(mouse_pos);
+		this->e_ability(angle);
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::W) && this->wall.is_up(game_time)) //wall
 	{
-		this->w_ability(mouse_pos);
+		this->w_ability(angle);
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.is_up(game_time)) //Shoot
 	{
-		this->q_ability(mouse_pos);
+		this->q_ability(angle);
 	}
 
 	if (this->target_pos) //Check if player has reach target
@@ -62,20 +63,18 @@ void Player::update(RenderWindow& wn, const Time& game_time)
 	}
 }
 
-void Player::q_ability(const Vector2i& mouse_pos) //Create a new bullet and add it to player list
+void Player::q_ability(const float angle) //Create a new bullet and add it to player list
 {
-	float angle = get_angle(this->object.getPosition(), mouse_pos);
 	Bullet bullet = Bullet(*this, angle);
 	bullet.set_target();//Set the bullet target_destination
 
 	this->bullets.push_back(bullet);
 }
 
-void Player::w_ability(const Vector2i& mouse_pos) //The wall ability
+void Player::w_ability(const float angle) //The wall ability
 {
 	this->player_wall.lifespan = WALL_LIFESPAN;
 
-	float angle = get_angle(this->object.getPosition(), mouse_pos);
 	Vector2f wall_spawn = bullet_spawn(*this, angle); //spawn the wall infront of the player 
 	this->player_wall.object.setPosition(wall_spawn); //Set the position of the wall to be infron of the player
 	this->player_wall.object.setRotation(radians_to_degree(angle)); //Rotate the wall to be horizontal
@@ -85,10 +84,9 @@ void Player::w_ability(const Vector2i& mouse_pos) //The wall ability
 	this->player_wall.set_target((Vector2i)target);
 }
 
-void Player::e_ability(const Vector2i& mouse_pos) //Dash ability
+void Player::e_ability(const float angle) //Dash ability
 {
 	this->dashing = 1;
-	float angle = get_angle(this->object.getPosition(), mouse_pos);
 	Vector2f target_dist = dist_component(angle, DASH_DISTANCE);
 	this->target_pos = new Vector2i(this->object.getPosition() + target_dist); //Allocate a new Vector2i pointer pointing to a mouse position
 	this->speed = DASH_SPEED;

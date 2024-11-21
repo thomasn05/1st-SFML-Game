@@ -31,7 +31,7 @@ class Player :
 private:
     Vector2i *target_pos = nullptr; // @brief points to the pos that the player is heading towards (null if not moving)
     int speed = PLAYER_SPEED;
-    bool dashing = 0; // @brief 1 is player is currently dashing 0 if not
+    bool dashing = 0; // @brief 1 is player is currently dashing 0 if notconst float angle
 
     std::vector<Bullet> bullets; //@brief Player bullets
     Wall player_wall = Wall(*this);
@@ -53,20 +53,24 @@ public:
     * @param game_timer: the time of the game
     */
     void update(RenderWindow& wn, const Time& game_time);//Update the player positon and draws them on screen
-        
+
     /*
     * @brief Player's shoot ability
-    * @param mouse_pos: the mouse position relative to game window
+    * @param angle: the angle from the player to the mouse
     */
-    void q_ability(const Vector2i& mouse_pos); //Shoot\
+    void q_ability(const float angle); //Shoot\
 
-    void w_ability(const Vector2i& mouse_pos);
+    /*
+    * @brief Player's wall ability
+    * @param angle: the angle from the player to the mouse
+    */
+    void w_ability(const float angle);
 
     /*
     * @brief Player's dash ability
-    * @param mouse_pos: the mouse position relative to game window
+    * @param angle: the angle from the player to the mouse
     */
-    void e_ability(const Vector2i& mouse_pos);
+    void e_ability(const float angle);
      
     /*
     * @brief return the reference to the player's bullets vector
