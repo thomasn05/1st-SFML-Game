@@ -60,8 +60,7 @@ int main()
         if (!player.is_dead())
         {
             player.update(window, game_timer.getElapsedTime());
-            player.object.setFillColor(Color::Green);
-            e_manager.update(window, game_timer.getElapsedTime());
+            //e_manager.update(window, game_timer.getElapsedTime());
         }
         else { draw_end_screen(font, window); }
 

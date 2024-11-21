@@ -30,6 +30,6 @@ public:
     * @brief update the wall's movement and draw it to screen
     * @param the window to draw it to
     */
-    void update(RenderWindow& wn);
+    void update(RenderWindow& wn, Time time_elasped);
 };
 
