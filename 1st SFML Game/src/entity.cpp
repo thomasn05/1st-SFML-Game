@@ -17,7 +17,7 @@ void Entity::move(const Vector2i& target, const int speed)
 	this->object.setPosition(new_pos);
 }
 
-bool Entity::collided_with(const Entity& other) const
+bool Entity::collided_with(const Entity& other)
 {
 	std::vector<Vector2f> this_corners = this->get_corners();
 	std::vector<Vector2f> other_corners = other.get_corners();
@@ -27,29 +27,35 @@ bool Entity::collided_with(const Entity& other) const
 
 	edges1.insert(edges1.end(), edges2.begin(), edges2.end()); //Combine the two edge norm vector
 
+	Vector2f smallest_edge;
+	float min_overlap = FLT_MAX;
 	for (auto& e : edges1)
 	{
-		auto proj1 = project(this_corners, e); //P{Project each corner onto edge norm
+		auto proj1 = project(this_corners, e); //Project each corner onto edge norm
 		auto proj2 = project(other_corners, e);
 
-		float overlap = std::min(proj1.second, proj2.second) - std::max(proj1.first, proj2.first);
+		float overlap = std::min(proj1.second, proj2.second) - std::max(proj1.first, proj2.first); //Overlapping of two vectors negative is they dont cross, positive if they do
 		if (overlap < 0) //Check for seperating axis, no collision
 		{
 			return 0;
 		}
+
+		if (overlap < min_overlap)
+		{
+			min_overlap = overlap;
+			smallest_edge = e;
+		}
 	}
+
+	Vector2f mtv = min_overlap * smallest_edge;
+	Vector2f center_dist = this->object.getPosition() - other.object.getPosition();
+
+	if (dot_product(mtv, center_dist) < 0) { mtv = -mtv; }
+
+	this->object.move(mtv);
 
 	return 1; //All axis overlap, collision detected
 }
-
-//Vector2f Entity::collision_pos(Entity other)
-//{
-//	/*FloatRect intersection;
-//	this->object.getGlobalBounds().intersects(other.object.getGlobalBounds(), intersection);
-//	return Vector2f(intersection.left, intersection.top);*/
-//
-//
-//}
 
 Vector2f Entity::get_component(Vector2i target, int distance) const 
 {
