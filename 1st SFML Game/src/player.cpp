@@ -11,17 +11,17 @@ void Player::update(RenderWindow& wn, const Time& game_time)
 
 	Vector2i mouse_pos = Mouse::getPosition(wn);//Get the current mouse position relative to game window
 	float angle = get_angle(this->object.getPosition(), mouse_pos);
-	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.is_up(game_time)) //Dash
+	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.check_CD(game_time)) //Dash
 	{
 		this->e_ability(angle);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::W) && this->wall.is_up(game_time)) //wall
+	if (Keyboard::isKeyPressed(Keyboard::W) && this->wall.check_CD(game_time)) //wall
 	{
 		this->w_ability(angle);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.is_up(game_time)) //Shoot
+	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.check_CD(game_time)) //Shoot
 	{
 		this->q_ability(angle);
 	}
@@ -69,6 +69,8 @@ void Player::q_ability(const float angle) //Create a new bullet and add it to pl
 	bullet.set_target();//Set the bullet target_destination
 
 	this->bullets.push_back(bullet);
+
+	this->shoot.is_up = 0;
 }
 
 void Player::w_ability(const float angle) //The wall ability
@@ -82,6 +84,8 @@ void Player::w_ability(const float angle) //The wall ability
 	Vector2f target_dist = dist_component(angle, MAX_WALL_DISTANCE); //Target pos MAX_WALL_DISTANCE away from the player
 	Vector2f target = this->object.getPosition() + target_dist;
 	this->player_wall.set_target((Vector2i)target);
+
+	this->wall.is_up = 0;
 }
 
 void Player::e_ability(const float angle) //Dash ability
@@ -90,6 +94,8 @@ void Player::e_ability(const float angle) //Dash ability
 	Vector2f target_dist = dist_component(angle, DASH_DISTANCE);
 	this->target_pos = new Vector2i(this->object.getPosition() + target_dist); //Allocate a new Vector2i pointer pointing to a mouse position
 	this->speed = DASH_SPEED;
+
+	this->dash.is_up = 0;
 }
 
 std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's bullets
@@ -97,13 +103,13 @@ std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's 
 	return this->bullets;
 }
 
-bool Ability::is_up(const Time& game_time) // Check if an ability's cooldown is up
+bool Ability::check_CD(const Time& game_time) // Check if an ability's cooldown is up
 {
 	if (game_time - this->timer >= this->CD)  //Check if enough time has passes
 	{
 		this->timer = game_time;
-		return 1;
+		this->is_up = 1;
 	}
 
-	return 0;
+	return this->is_up;
 }

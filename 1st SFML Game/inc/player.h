@@ -14,15 +14,16 @@ const Time WALL_CD = seconds(8);
 */
 struct Ability
 {
-    Time timer; // @brief the current ability 
     Time CD; // @brief the cooldown of the ability
+    Time timer = seconds(0); // @brief the current ability 
+    bool is_up = 1;
 
     /*
     * @brief Check if the ability is up (set the timer to game time if it is)
     * @param game_time: the curr time of the game
     * @return True if it is up
     */
-    bool is_up(const Time& game_time);
+    bool check_CD(const Time& game_time);
 };
 
 class Player :
@@ -36,9 +37,9 @@ private:
     std::vector<Bullet> bullets; //@brief Player bullets
     Wall player_wall = Wall(*this); //@brief player's wall
 
-    Ability shoot = { seconds(0), SHOOT_CD }; // @brief represent player's shoot ability
-    Ability dash = { seconds(0), DASH_CD }; // @brief represent player's dash ability
-    Ability wall = { seconds(0), WALL_CD }; // @brief represent player's wall ability
+    Ability shoot = {SHOOT_CD }; // @brief represent player's shoot ability
+    Ability dash = {DASH_CD }; // @brief represent player's dash ability
+    Ability wall = {WALL_CD }; // @brief represent player's wall ability
 
 public:
     /*

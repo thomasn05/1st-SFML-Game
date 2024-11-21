@@ -8,8 +8,8 @@ class EnemyManager
 private:
 	std::vector<Enemy> enemies; //@brief a vector of enemies on screen
 	Player &player; //@brief reference to player
-	const unsigned int max = 30; // @brief the maximum number of enemy that can appear on screen
-	Ability enemy_spawn = { seconds(0), SPAWN_INTERVAL }; //@brief spawn_timer
+	const unsigned int max = 10; // @brief the maximum number of enemy that can appear on screen
+	Ability enemy_spawn = {SPAWN_INTERVAL }; //@brief spawn_timer
 
 public:
 	/*
