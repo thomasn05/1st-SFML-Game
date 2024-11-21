@@ -19,7 +19,27 @@ void Entity::move(const Vector2i& target, const int speed)
 
 bool Entity::collided_with(const Entity& other) const
 {
-	return SAT_Collision(this->get_corners(), other.get_corners());
+	std::vector<Vector2f> this_corners = this->get_corners();
+	std::vector<Vector2f> other_corners = other.get_corners();
+
+	std::vector<Vector2f> edges1 = get_edge(this_corners); //Get the edge norm
+	std::vector<Vector2f> edges2 = get_edge(other_corners);
+
+	edges1.insert(edges1.end(), edges2.begin(), edges2.end()); //Combine the two edge norm vector
+
+	for (auto& e : edges1)
+	{
+		auto proj1 = project(this_corners, e); //P{Project each corner onto edge norm
+		auto proj2 = project(other_corners, e);
+
+		float overlap = std::min(proj1.second, proj2.second) - std::max(proj1.first, proj2.first);
+		if (overlap < 0) //Check for seperating axis, no collision
+		{
+			return 0;
+		}
+	}
+
+	return 1; //All axis overlap, collision detected
 }
 
 //Vector2f Entity::collision_pos(Entity other)

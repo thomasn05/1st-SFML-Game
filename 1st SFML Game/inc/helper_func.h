@@ -52,10 +52,3 @@ std::pair<float, float> project(const std::vector<Vector2f>& corners, const Vect
 * @return a vector contain the edge norms
 */
 std::vector<Vector2f> get_edge(const std::vector<Vector2f>& corners);
-
-/*
-* @brief check for collision between to polygon using SAT
-* @param corners1: the corners of polygon 1
-* @param corners2: the corners of polygon 2
-*/
-bool SAT_Collision(const std::vector<Vector2f>& corners1, const std::vector<Vector2f>& corners2);

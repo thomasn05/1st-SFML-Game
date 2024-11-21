@@ -41,7 +41,8 @@ int main()
 
     Player player(player_spawn);
     
-    EnemyManager e_manager(player);
+    //EnemyManager e_manager(player);
+    Entity obj(Vector2f(300, 300), Vector2f(200, 200), Color::Blue);
 
     while (window.isOpen())
     {
@@ -59,6 +60,14 @@ int main()
         if (!player.is_dead())
         {
             player.update(window, game_timer.getElapsedTime());
+            window.draw(obj.object);
+
+            if (player.collided_with(obj))
+            {
+                player.object.setFillColor(Color::Red);
+            }
+            else { player.object.setFillColor(Color::Green); }
+
             //e_manager.update(window, game_timer.getElapsedTime());
         }
         else { draw_end_screen(font, window); }

@@ -28,7 +28,7 @@ public:
 	void move(const Vector2i& target, const int speed);
 
 	/*
-	* @breif Check for collision between two Entity
+	* @breif Check for collision between two Entity using SAT
 	* @param other: another Entity object
 	* @return True if collided, False if not
 	*/

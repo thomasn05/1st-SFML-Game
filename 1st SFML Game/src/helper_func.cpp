@@ -58,24 +58,3 @@ std::vector<Vector2f> get_edge(const std::vector<Vector2f>& corners)
 	return edges;
 }
 
-bool SAT_Collision(const std::vector<Vector2f>& corners1, const std::vector<Vector2f>& corners2)
-{
-	std::vector<Vector2f> edges1 = get_edge(corners1); //Get the edge norm
-	std::vector<Vector2f> edges2 = get_edge(corners2);
-
-	edges1.insert(edges1.end(), edges2.begin(), edges2.end()); //Combine the two edge norm vector
-
-	for (auto& e : edges1)
-	{
-		auto proj1 = project(corners1, e); //P{Project each corner onto edge norm
-		auto proj2 = project(corners2, e);
-
-		if (proj1.first > proj2.second || proj1.second < proj2.first) //Check for seperating axis, no collision
-		{
-			return 0;
-		}
-	}
-
-	return 1; //All axis overlap, collision detected
-}
-
