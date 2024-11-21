@@ -80,14 +80,16 @@ void Player::w_ability(const Vector2i& mouse_pos) //The wall ability
 	this->player_wall.object.setPosition(wall_spawn); //Set the position of the wall to be infron of the player
 	this->player_wall.object.setRotation(radians_to_degree(angle)); //Rotate the wall to be horizontal
 
-	Vector2f target = this->player_wall.get_component(mouse_pos, MAX_WALL_DISTANCE); //Target pos MAX_WALL_DISTANCE away from the player
+	Vector2f target_dist = this->player_wall.get_component(mouse_pos, MAX_WALL_DISTANCE); //Target pos MAX_WALL_DISTANCE away from the player
+	Vector2f target = this->object.getPosition() + target_dist;
 	this->player_wall.set_target((Vector2i)target);
 }
 
 void Player::e_ability(const Vector2i& mouse_pos) //Dash ability
 {
 	this->dashing = 1;
-	this->target_pos = new Vector2i(this->get_component(mouse_pos, DASH_DISTANCE)); //Allocate a new Vector2i pointer pointing to a mouse position
+	Vector2f target_dist = this->get_component(mouse_pos, DASH_DISTANCE);
+	this->target_pos = new Vector2i(this->object.getPosition() + target_dist); //Allocate a new Vector2i pointer pointing to a mouse position
 	this->speed = DASH_SPEED;
 }
 
