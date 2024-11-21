@@ -22,9 +22,8 @@ void Bullet::update(RenderWindow& wn) //Draw and check when target is reach
 
 void Bullet::set_target() //Set the target_pos
 {
-	int x_dist = static_cast<int>(MAX_BULLET_DISTANCE * cos(this->angle)); //Find the x and y distance 
-	int y_dist = static_cast<int>(MAX_BULLET_DISTANCE * sin(this->angle));
+	Vector2f dist = dist_component(this->angle, MAX_BULLET_DISTANCE);
 	Vector2f curr_pos = this->object.getPosition();
 
-	this->target_pos = Vector2i(static_cast<int>(curr_pos.x) - x_dist, static_cast<int>(curr_pos.y) - y_dist); //Convert to int 
+	this->target_pos = Vector2i((int)(curr_pos.x + dist.x), (int)(curr_pos.y + dist.y)); //Convert to int 
 }
