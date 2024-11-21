@@ -14,7 +14,7 @@ void Entity::move(const Vector2i& target, const int speed)
 {
 	Vector2f new_pos = this->get_component(target, speed);
 
-	this->object.setPosition(new_pos);
+	this->object.move(new_pos);
 }
 
 bool Entity::collided_with(const Entity& other)
@@ -63,10 +63,10 @@ Vector2f Entity::get_component(Vector2i target, int distance) const
 	
 	float angle = get_angle(curr_pos, target);
 
-	float new_x = curr_pos.x - distance * cos(angle); //Use trig to find how much to move in the x and y
-	float new_y = curr_pos.y - distance * sin(angle);
+	float new_x = distance * cos(angle); //Use trig to find how much to move in the x and y
+	float new_y = distance * sin(angle);
 
-	return Vector2f(new_x, new_y);
+	return Vector2f(-new_x, -new_y);
 }
 
 bool Entity::is_dead() const
