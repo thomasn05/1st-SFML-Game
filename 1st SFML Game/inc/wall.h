@@ -1,10 +1,10 @@
 #pragma once
 #include "entity.h"
 
-const Time WALL_LIFESPAN = seconds(3);
+const Time WALL_LIFESPAN = seconds(4);
 const int WALL_SPEED = 2;
 const int MAX_WALL_DISTANCE = 50; //@brief how far the wall will spawn away from the player
-const Vector2f WALL_SIZE = Vector2f(40, 10);
+const Vector2f WALL_SIZE = Vector2f(60, 10);
 
 class Wall :
     public Entity
@@ -32,6 +32,6 @@ public:
     */
     void update(RenderWindow& wn, Time time_elasped);
 
-    bool hit(Entity& other);
+    bool check_hit(Entity& other);
 };
 

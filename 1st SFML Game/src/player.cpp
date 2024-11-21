@@ -50,11 +50,12 @@ void Player::update(RenderWindow& wn, const Time& game_time)
 	wn.draw(this->object);
 
 	this->player_wall.update(wn, game_time - this->wall.timer);
+	this->player_wall.check_hit(*this);
 
 	//Update player bullets
 	for (auto b = this->bullets.begin(); b != this->bullets.end();)
 	{
-		if (b->is_dead() || this->player_wall.hit(*b)) { b = this->bullets.erase(b); } //Remove if bullet is not alive
+		if (b->is_dead() || this->player_wall.check_hit(*b)) { b = this->bullets.erase(b); } //Remove if bullet is not alive if it either reach its dest of hit a wall
 		else 
 		{ 
 			b->update(wn);
