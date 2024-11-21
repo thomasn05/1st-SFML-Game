@@ -104,6 +104,11 @@ std::vector<Bullet>& Player::get_bullets() //Return a reference of the player's 
 	return this->bullets;
 }
 
+Wall Player::get_wall() const
+{
+	return this->player_wall;
+}
+
 bool Ability::check_CD(const Time& game_time) // Check if an ability's cooldown is up
 {
 	if (game_time - this->timer >= this->CD)  //Check if enough time has passes

@@ -32,6 +32,6 @@ public:
     */
     void update(RenderWindow& wn, Time time_elasped);
 
-    bool check_hit(Entity& other);
+    bool check_hit(Entity& other) const;
 };
 

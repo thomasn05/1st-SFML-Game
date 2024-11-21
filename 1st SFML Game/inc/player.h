@@ -78,6 +78,8 @@ public:
     */
     std::vector<Bullet>& get_bullets();
 
+    Wall get_wall() const;
+
     //TODO: Player abilities - wall collision with player, bullet, and enemies
 };
 
