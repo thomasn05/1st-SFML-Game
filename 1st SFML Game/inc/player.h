@@ -30,11 +30,11 @@ class Player :
 {
 private:
     Vector2i *target_pos = nullptr; // @brief points to the pos that the player is heading towards (null if not moving)
-    int speed = PLAYER_SPEED;
+    int speed = PLAYER_SPEED; //@brief player speed
     bool dashing = 0; // @brief 1 is player is currently dashing 0 if notconst float angle
 
     std::vector<Bullet> bullets; //@brief Player bullets
-    Wall player_wall = Wall(*this);
+    Wall player_wall = Wall(*this); //@brief player's wall
 
     Ability shoot = { seconds(0), SHOOT_CD }; // @brief represent player's shoot ability
     Ability dash = { seconds(0), DASH_CD }; // @brief represent player's dash ability

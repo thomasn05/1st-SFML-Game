@@ -17,7 +17,7 @@ class Bullet :
     public Entity
 {
 private:
-    int speed = BULLET_SPEED;
+    int speed = BULLET_SPEED; //@brief bullet speed
     Vector2i target_pos; // @brief where the bullet is moving towards
     float angle; // @brief roation of the ullet
 

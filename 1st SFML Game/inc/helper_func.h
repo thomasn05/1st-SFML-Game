@@ -53,4 +53,10 @@ std::pair<float, float> project(const std::vector<Vector2f>& corners, const Vect
 */
 std::vector<Vector2f> get_edge(const std::vector<Vector2f>& corners);
 
+/*
+* @brief Get the x and y distant component (the legs)
+* @param angle: the angle of the Vector
+* @param distance: the hypothenuse between the two point
+* @return a Vector2f(x_component, y_component)
+*/
 Vector2f dist_component(const float angle, const int distance);

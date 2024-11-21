@@ -7,7 +7,7 @@ class Entity
 public:
 	Time lifespan = seconds(1); // @brief lifewspan of an object
 
-	RectangleShape object;
+	RectangleShape object; //@breif the RectangleShape
 
 	/**
 	*@brief create an entity object
@@ -43,6 +43,10 @@ public:
 	* @brief kill the Entity object by setting its lifespan to 0s
 	*/
 	void kill();
-
+	
+	/*
+	* @brief get the  four corners of the Entity
+	* @return vector {top-right, top-left, bottom-right, bottom left}
+	*/
 	std::vector<Vector2f> get_corners() const;
 };

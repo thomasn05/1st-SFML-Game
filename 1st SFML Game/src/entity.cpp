@@ -13,7 +13,7 @@ Entity::Entity(const Vector2f& position, const Vector2f& size, const Color color
 void Entity::move(const Vector2i& target, const int speed)
 {
 	Vector2f curr_pos = this->object.getPosition();
-	float angle = get_angle(curr_pos, target);
+	float angle = get_angle(curr_pos, target); //Get the angle of Entity relative to its target
 
 	Vector2f new_pos = dist_component(angle, speed);
 
@@ -22,7 +22,7 @@ void Entity::move(const Vector2i& target, const int speed)
 
 bool Entity::collided_with(const Entity& other)
 {
-	std::vector<Vector2f> this_corners = this->get_corners();
+	std::vector<Vector2f> this_corners = this->get_corners(); //Get the four corners
 	std::vector<Vector2f> other_corners = other.get_corners();
 
 	std::vector<Vector2f> edges1 = get_edge(this_corners); //Get the edge norm
@@ -43,7 +43,7 @@ bool Entity::collided_with(const Entity& other)
 			return 0;
 		}
 
-		if (overlap < min_overlap)
+		if (overlap < min_overlap) //Find the smallest overlap and edge
 		{
 			min_overlap = overlap;
 			smallest_edge = e;
@@ -53,7 +53,7 @@ bool Entity::collided_with(const Entity& other)
 	Vector2f mtv = min_overlap * smallest_edge;
 	Vector2f center_dist = this->object.getPosition() - other.object.getPosition();
 
-	if (dot_product(mtv, center_dist) < 0) { mtv = -mtv; }
+	if (dot_product(mtv, center_dist) < 0) { mtv = -mtv; } //Check mtv direction by change its position relative to the other Entity
 
 	this->object.move(mtv);
 
@@ -73,13 +73,14 @@ void Entity::kill()
 std::vector<Vector2f> Entity::get_corners() const
 {
 	std::vector<Vector2f> corners;
-	Transform transform = this->object.getTransform();
+	Transform transform = this->object.getTransform(); //Get the object transformation
 	Vector2f size = this->object.getSize();
 
-	corners.push_back(transform.transformPoint(Vector2f(0, 0)));
-	corners.push_back(transform.transformPoint(Vector2f(size.x, 0)));
-	corners.push_back(transform.transformPoint(Vector2f(size.x, size.y)));
-	corners.push_back(transform.transformPoint(Vector2f(0, size.y)));
+	//Transform the local corners using the Entity transformation
+	corners.push_back(transform.transformPoint(Vector2f(0, 0))); //top-right
+	corners.push_back(transform.transformPoint(Vector2f(size.x, 0))); //top-left
+	corners.push_back(transform.transformPoint(Vector2f(size.x, size.y))); //bottom right
+	corners.push_back(transform.transformPoint(Vector2f(0, size.y))); //bottom left
 
 	return corners;
 }

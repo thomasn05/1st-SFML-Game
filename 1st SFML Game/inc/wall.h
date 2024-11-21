@@ -10,8 +10,8 @@ class Wall :
     public Entity
 {
 private:
-    int speed = WALL_SPEED;
-    Vector2i target_pos;
+    int speed = WALL_SPEED; //@brief wall speed
+    Vector2i target_pos; //@brief where the wall will end u
 
 public:
     /*

@@ -25,7 +25,7 @@ class Enemy :
     public Entity
 {
 private:
-    int speed = ENEMY_SPEED;
+    int speed = ENEMY_SPEED; //@brief enemy speed
 
 public:
     /*
