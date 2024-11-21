@@ -52,3 +52,5 @@ std::pair<float, float> project(const std::vector<Vector2f>& corners, const Vect
 * @return a vector contain the edge norms
 */
 std::vector<Vector2f> get_edge(const std::vector<Vector2f>& corners);
+
+Vector2f dist_component(const float angle, const int distance);

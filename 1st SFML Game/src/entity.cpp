@@ -12,7 +12,10 @@ Entity::Entity(const Vector2f& position, const Vector2f& size, const Color color
 
 void Entity::move(const Vector2i& target, const int speed)
 {
-	Vector2f new_pos = this->get_component(target, speed);
+	Vector2f curr_pos = this->object.getPosition();
+	float angle = get_angle(curr_pos, target);
+
+	Vector2f new_pos = dist_component(angle, speed);
 
 	this->object.move(new_pos);
 }
@@ -55,18 +58,6 @@ bool Entity::collided_with(const Entity& other)
 	this->object.move(mtv);
 
 	return 1; //All axis overlap, collision detected
-}
-
-Vector2f Entity::get_component(Vector2i target, int distance) const 
-{
-	Vector2f curr_pos = this->object.getPosition();
-	
-	float angle = get_angle(curr_pos, target);
-
-	float new_x = distance * cos(angle); //Use trig to find how much to move in the x and y
-	float new_y = distance * sin(angle);
-
-	return Vector2f(-new_x, -new_y);
 }
 
 bool Entity::is_dead() const

@@ -35,14 +35,6 @@ public:
 	bool collided_with(const Entity& other); //Collision Detection
 
 	/*
-	* @brief Get the x and y component between the Entity object and a target based on a certain distance
-	* @param target: the target pos (usually a mouse position which is represented as Vector2i)
-	* @param distance: the hypothenuse between the two point
-	* @return a Vector2f(x_component, y_component)
-	*/
-	Vector2f get_component(Vector2i target, int distance) const; //Get the x and y component distance from the entity to
-
-	/*
 	* @brief check if the Entity object lifespan is 0s
 	*/
 	bool is_dead() const;
