@@ -2,29 +2,19 @@
 
 void Game_engine::run()
 {
-    while (this->game_wn.isOpen())
+    this->game_wn.clear();
+
+    this->keep_mouse_in_bound();
+
+    if (!player.is_dead())
     {
-        Event event;
-        while (this->game_wn.pollEvent(event))
-        {
-            if (event.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape))
-                this->game_wn.close();
-        }
+        player.update(this->game_wn, this->game_timer.getElapsedTime());
 
-        this->game_wn.clear();
-
-        this->keep_mouse_in_bound();
-
-        if (!player.is_dead())
-        {
-            player.update(this->game_wn, this->game_timer.getElapsedTime());
-
-            e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
-        }
-        else { end_screen(); }
-
-        this->game_wn.display();
+        e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
     }
+    else { end_screen(); }
+
+    this->game_wn.display();
 }
 
 void Game_engine::end_screen()

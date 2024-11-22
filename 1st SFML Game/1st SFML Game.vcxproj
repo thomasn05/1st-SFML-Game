@@ -23,6 +23,7 @@
     <ClInclude Include="inc\enemy.h" />
     <ClInclude Include="inc\EnemyManager.h" />
     <ClInclude Include="inc\entity.h" />
+    <ClInclude Include="inc\game_engine.h" />
     <ClInclude Include="inc\helper_func.h" />
     <ClInclude Include="inc\player.h" />
     <ClInclude Include="inc\wall.h" />
@@ -32,6 +33,7 @@
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\EnemyManager.cpp" />
     <ClCompile Include="src\entity.cpp" />
+    <ClCompile Include="src\game_engine.cpp" />
     <ClCompile Include="src\helper_func.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\player.cpp" />
