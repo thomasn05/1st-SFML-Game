@@ -1,5 +1,18 @@
 #include "game_engine.h"
 
+Text& get_text(const Font font, const int font_size, Color color, Vector2f pos)
+{
+    Text end_text;
+    end_text.setFont(font);
+    end_text.setCharacterSize(font_size);
+    end_text.setFillColor(color);
+    end_text.setStyle(Text::Bold);
+    end_text.setOrigin(Vector2f(font_size / 2.f, font_size / 2.f));
+    end_text.setPosition(pos);
+
+    return end_text;
+}
+
 void Game_engine::run()
 {
     this->game_wn.clear();
@@ -19,16 +32,8 @@ void Game_engine::run()
 
 void Game_engine::end_screen()
 {
-    Text end_text;
-    end_text.setFont(this->font);
-    end_text.setString("Game Over!");
-    end_text.setCharacterSize(font_size);
-    end_text.setFillColor(Color::Red);
-    end_text.setStyle(Text::Bold);
-    end_text.setOrigin(Vector2f(font_size / 2, font_size / 2));
-    end_text.setPosition(end_text_spawn);
-
-    this->game_wn.draw(end_text);
+    this->end_text.setString("GAME OVER!");
+    this->game_wn.draw(this->end_text);
 }
 
 void Game_engine::keep_mouse_in_bound()
@@ -44,6 +49,6 @@ void Game_engine::keep_mouse_in_bound()
 //{
 //}
 //
-//void Game_engine::draw_score()
-//{
-//}
+void Game_engine::draw_score()
+{
+}
