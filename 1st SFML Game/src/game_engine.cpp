@@ -18,11 +18,13 @@ void Game_engine::run()
 
     this->keep_mouse_in_bound();
 
+    this->draw_score();
+
     if (!player.is_dead())
     {
         player.update(this->game_wn, this->game_timer.getElapsedTime());
-
         e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
+
     }
     else { end_screen(); }
 
@@ -33,6 +35,7 @@ void Game_engine::end_screen()
 {
     this->end_text.setString("GAME OVER!");
     this->end_text.setFont(this->font);
+
     this->game_wn.draw(this->end_text);
 }
 
@@ -51,4 +54,9 @@ void Game_engine::keep_mouse_in_bound()
 //
 void Game_engine::draw_score()
 {
+    std::string score = "SCORE: " + std::to_string(this->e_manager.get_enemies_killed() * 10);
+    this->score_text.setFont(this->font);
+    this->score_text.setString(score);
+
+    this->game_wn.draw(this->score_text);
 }

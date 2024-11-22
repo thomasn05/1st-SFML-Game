@@ -1,5 +1,6 @@
 #include "player.h"
 #include "EnemyManager.h"
+#include <string>
 
 #pragma once
 
@@ -10,8 +11,8 @@ const Vector2f player_spawn = Vector2f(win_width / 2, win_height / 2); // @brief
 const int end_game_font_size = 100; // @brief size of end_game_text
 const Vector2f end_text_spawn = Vector2f(win_width / 2 - end_game_font_size / 2 - 225, win_height / 2 - end_game_font_size / 2); // @brief the pos of the "Game Over!" text
 
-const int score_font_size = 25;
-const Vector2f score_pos = Vector2f(100, 100);
+const int score_font_size = 50;
+const Vector2f score_pos = Vector2f(100, 75);
 
 const int start_font_size = 100;
 const Vector2f start_text_pos = Vector2f(win_width / 2 - start_font_size / 2 - 175, win_height / 2 - start_font_size / 2);

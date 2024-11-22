@@ -10,6 +10,7 @@ private:
 	Player &player; //@brief reference to player
 	const unsigned int max = 10; // @brief the maximum number of enemy that can appear on screen
 	Ability enemy_spawn = {SPAWN_INTERVAL }; //@brief spawn_timer
+	int enemies_killed = 0;
 
 public:
 	/*
@@ -24,5 +25,7 @@ public:
 	* @param game_time: the curr time of the game (used for spawning)
 	*/
 	void update(RenderWindow& wn, const Time& game_time);
+
+	int get_enemies_killed() const;
 };
 

@@ -17,11 +17,20 @@ void EnemyManager::update(RenderWindow& wn, const Time& game_time)
 		
 
 		auto& player_bullets = this->player.get_bullets();
-		if (e->is_dead(player_bullets)) { e = this->enemies.erase(e); } //Kill enenemy and remove bullet if they collide
+		if (e->is_dead(player_bullets)) //Kill enenemy and remove bullet if they collide
+		{ 
+			e = this->enemies.erase(e); 
+			this->enemies_killed++;	
+		} 
 		else
 		{
 			e->update(wn, this->player);
 			++e;
 		}
 	}
+}
+
+int EnemyManager::get_enemies_killed() const
+{
+	return this->enemies_killed;
 }
