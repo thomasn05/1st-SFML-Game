@@ -1,9 +1,8 @@
 #include "game_engine.h"
 
-Text& get_text(const Font font, const int font_size, Color color, Vector2f pos)
+Text get_text(const int font_size, Color color, Vector2f pos)
 {
     Text end_text;
-    end_text.setFont(font);
     end_text.setCharacterSize(font_size);
     end_text.setFillColor(color);
     end_text.setStyle(Text::Bold);
@@ -33,6 +32,7 @@ void Game_engine::run()
 void Game_engine::end_screen()
 {
     this->end_text.setString("GAME OVER!");
+    this->end_text.setFont(this->font);
     this->game_wn.draw(this->end_text);
 }
 
