@@ -15,7 +15,7 @@ const int score_font_size = 50;
 const Vector2f score_pos = Vector2f(100, 75);
 
 const int start_font_size = 100;
-const Vector2f start_text_pos = Vector2f(win_width / 2 - start_font_size / 2 - 175, win_height / 2 - start_font_size / 2);
+const Vector2f start_text_pos = Vector2f(win_width / 2 - start_font_size / 2 - 75, win_height / 2 - start_font_size / 2 - 75);
 
 Text get_text(const int font_size, Color color, Vector2f pos);
 
@@ -30,12 +30,13 @@ private:
 	Text end_text = get_text(end_game_font_size, Color::Red, end_text_spawn);
 	Text score_text = get_text(score_font_size, Color::White, score_pos);
 	Text start_text = get_text(start_font_size, Color::Red, start_text_pos);
+	bool game_start = 0;
 
 	void end_screen();
 
 	void keep_mouse_in_bound();
 
-	//void start_screen();
+	void start_screen();
 
 	void draw_score();
 

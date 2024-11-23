@@ -14,21 +14,21 @@ Text get_text(const int font_size, Color color, Vector2f pos)
 
 void Game_engine::run()
 {
-    this->game_wn.clear();
+    if (!this->game_start) { this->start_screen(); }
 
-    this->keep_mouse_in_bound();
+    else {
+        this->keep_mouse_in_bound();
 
-    this->draw_score();
+        this->draw_score();
 
-    if (!player.is_dead())
-    {
-        player.update(this->game_wn, this->game_timer.getElapsedTime());
-        e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
+        if (!player.is_dead())
+        {
+            player.update(this->game_wn, this->game_timer.getElapsedTime());
+            e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
 
+        }
+        else { end_screen(); }
     }
-    else { end_screen(); }
-
-    this->game_wn.display();
 }
 
 void Game_engine::end_screen()
@@ -48,10 +48,15 @@ void Game_engine::keep_mouse_in_bound()
     Mouse::setPosition(Vector2i(x_pos, y_pos), this->game_wn);
 }
 
-//void Game_engine::start_screen()
-//{
-//}
-//
+void Game_engine::start_screen()
+{
+    this->start_text.setString("GAME!");
+    this->start_text.setFont(this->font);
+
+    this->game_wn.draw(this->start_text);
+}
+
+
 void Game_engine::draw_score()
 {
     std::string score = "SCORE: " + std::to_string(this->e_manager.get_enemies_killed() * 10);

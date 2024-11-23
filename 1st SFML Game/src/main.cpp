@@ -22,7 +22,11 @@ int main()
                 window.close();
         }
 
+        window.clear();
+
         game_engine.run();
+
+        window.display();
     }
     return 0;
 }
