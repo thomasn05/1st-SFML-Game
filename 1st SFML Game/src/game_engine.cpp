@@ -11,7 +11,7 @@ Text get_text(const int font_size, Color color)
     return end_text;
 }
 
-void Game_engine::draw_text(Text& text, const std::string msg, Vector2f pos) const
+void Game_engine::draw_text(Text& text, const std::string msg, Vector2f pos)
 {
     text.setFont(this->font);
     text.setString(msg);
@@ -57,3 +57,4 @@ void Game_engine::draw_score()
     std::string score = "SCORE: " + std::to_string(this->e_manager.get_enemies_killed() * 10);
     this->draw_text(score_text, score, score_pos);
 }
+

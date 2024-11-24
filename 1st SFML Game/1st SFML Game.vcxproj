@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="inc\bullet.h" />
     <ClInclude Include="inc\enemy.h" />
     <ClInclude Include="inc\EnemyManager.h" />
@@ -29,6 +30,7 @@
     <ClInclude Include="inc\wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="src\bullet.cpp" />
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\EnemyManager.cpp" />

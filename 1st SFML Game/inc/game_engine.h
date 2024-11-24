@@ -30,13 +30,13 @@ private:
 	Text end_text = get_text(end_game_font_size, Color::Red);
 	Text score_text = get_text(score_font_size, Color::White);
 	Text start_text = get_text(start_font_size, Color::Red);
-	bool game_start = 0;
+	bool game_start = 1;
 
 	void keep_mouse_in_bound();
 
 	void draw_score();
 
-	void draw_text(Text& text, const std::string msg, Vector2f pos) const;
+	void draw_text(Text& text, const std::string msg, Vector2f pos);
 
 public:
 	Game_engine(RenderWindow& game_wn, Font font, Player& player, EnemyManager& e_manager) : game_wn(game_wn), font(font), player(player), e_manager(e_manager) {}

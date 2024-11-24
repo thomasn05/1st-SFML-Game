@@ -34,6 +34,12 @@
     <ClInclude Include="inc\wall.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\game_engine.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\bullet.cpp">
@@ -58,6 +64,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\wall.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_engine.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
