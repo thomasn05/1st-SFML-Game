@@ -34,9 +34,6 @@
     <ClInclude Include="inc\wall.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header</Filter>
-    </ClInclude>
     <ClInclude Include="inc\game_engine.h">
       <Filter>Header</Filter>
     </ClInclude>
@@ -66,15 +63,23 @@
     <ClCompile Include="src\wall.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="src\game_engine.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="arial.ttf">
+    <Image Include="rsc\E-Icon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rsc\Q-Icon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rsc\W-Icon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="rsc\arial.ttf">
       <Filter>Resource Files</Filter>
     </Font>
   </ItemGroup>

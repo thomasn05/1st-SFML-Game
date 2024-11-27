@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h" />
     <ClInclude Include="inc\bullet.h" />
     <ClInclude Include="inc\enemy.h" />
     <ClInclude Include="inc\EnemyManager.h" />
@@ -30,7 +29,6 @@
     <ClInclude Include="inc\wall.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp" />
     <ClCompile Include="src\bullet.cpp" />
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\EnemyManager.cpp" />
@@ -42,7 +40,12 @@
     <ClCompile Include="src\wall.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="arial.ttf" />
+    <Image Include="rsc\E-Icon.png" />
+    <Image Include="rsc\Q-Icon.png" />
+    <Image Include="rsc\W-Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="rsc\arial.ttf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

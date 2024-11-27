@@ -31,6 +31,8 @@ private:
 	Text score_text = get_text(score_font_size, Color::White);
 	Text start_text = get_text(start_font_size, Color::Red);
 	bool game_start = 1;
+	std::vector<std::pair<Sprite, Text>> icons;
+	
 
 	void keep_mouse_in_bound();
 
@@ -38,8 +40,10 @@ private:
 
 	void draw_text(Text& text, const std::string msg, Vector2f pos);
 
+	void draw_icons();
+
 public:
-	Game_engine(RenderWindow& game_wn, Font font, Player& player, EnemyManager& e_manager) : game_wn(game_wn), font(font), player(player), e_manager(e_manager) {}
+	Game_engine(RenderWindow& game_wn, const Font font, Player& player, EnemyManager& e_manager, const std::vector<Texture>& icons_texture);
 	~Game_engine() = default;
 
 	void run();
