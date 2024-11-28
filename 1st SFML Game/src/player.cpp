@@ -1,5 +1,12 @@
 #include "player.h"
 
+void Player::update_abilities(Time game_time)
+{
+	this->shoot.check_CD(game_time);
+	this->wall.check_CD(game_time);
+	this->dash.check_CD(game_time);
+}
+
 void Player::update(RenderWindow& wn, const Time& game_time)
 {
 
@@ -9,19 +16,21 @@ void Player::update(RenderWindow& wn, const Time& game_time)
 		this->speed = PLAYER_SPEED;
 	}
 
+	this->update_abilities(game_time);
+
 	Vector2i mouse_pos = Mouse::getPosition(wn);//Get the current mouse position relative to game window
 	float angle = get_angle(this->object.getPosition(), mouse_pos);
-	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.check_CD(game_time)) //Dash
+	if (Keyboard::isKeyPressed(Keyboard::E) && this->dash.is_up) //Dash
 	{
 		this->e_ability(angle);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::W) && this->wall.check_CD(game_time)) //wall
+	if (Keyboard::isKeyPressed(Keyboard::W) && this->wall.is_up) //wall
 	{
 		this->w_ability(angle);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.check_CD(game_time)) //Shoot
+	if (Keyboard::isKeyPressed(Keyboard::Q) && this->shoot.is_up) //Shoot
 	{
 		this->q_ability(angle);
 	}

@@ -41,6 +41,8 @@ private:
     Ability dash = {DASH_CD }; // @brief represent player's dash ability
     Ability wall = {WALL_CD }; // @brief represent player's wall ability
 
+    void update_abilities(Time game_time);
+
 public:
     /*
     *@brief Constructor create a Player Entity
