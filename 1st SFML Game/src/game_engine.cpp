@@ -77,7 +77,7 @@ void Game_engine::run()
         if (!player.is_dead())
         {
             player.update(this->game_wn, this->game_timer.getElapsedTime());
-            e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
+            //e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
             this->draw_icons();
 
         }

@@ -48,7 +48,7 @@ void Player::update(RenderWindow& wn, const Time& game_time)
 			this->move(*(this->target_pos), this->speed);
 		}
 
-		else //if it has set it to a nullptr so that it doesn't try to keep moving
+		if (reach_dest || this->player_wall.check_hit(*this))//if it has set it to a nullptr so that it doesn't try to keep moving
 		{
 			this->target_pos = nullptr;
 			this->speed = PLAYER_SPEED;
@@ -59,7 +59,6 @@ void Player::update(RenderWindow& wn, const Time& game_time)
 	wn.draw(this->object);
 
 	this->player_wall.update(wn, game_time - this->wall.timer);
-	this->player_wall.check_hit(*this);
 
 	//Update player bullets
 	for (auto b = this->bullets.begin(); b != this->bullets.end();)
