@@ -59,7 +59,7 @@ public:
     * @brief Player's shoot ability
     * @param angle: the angle from the player to the mouse
     */
-    void q_ability(const float angle); //Shoot\
+    void q_ability(const float angle); //Shoot
 
     /*
     * @brief Player's wall ability
@@ -80,6 +80,6 @@ public:
 
     Wall get_wall() const;
 
-    //TODO: Player abilities - wall collision with player, bullet, and enemies
+    Ability get_abilities(const int id);
 };
 

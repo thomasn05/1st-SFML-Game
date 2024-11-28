@@ -1,4 +1,5 @@
 #include "game_engine.h"
+#include <iostream>
 
 Text get_text(const int font_size, Color color)
 {
@@ -26,8 +27,18 @@ void Game_engine::draw_icons()
 {
     for (auto& i : this->icons)
     {
-        this->game_wn.draw(i.first);
-        this->game_wn.draw(i.second);
+        Sprite icon = i.first;
+        int ability_id = i.second;
+
+        Ability ability = this->player.get_abilities(ability_id);
+        if (!ability.is_up) { 
+            icon.setColor(Color(105, 105, 105)); }
+
+        else { 
+            icon.setColor(Color::White); 
+        }
+
+        this->game_wn.draw(icon);
     }
 }
 
@@ -38,14 +49,12 @@ Game_engine::Game_engine(RenderWindow& game_wn, const Font font, Player& player,
         Sprite icon_sprite;
         icon_sprite.setTexture(icons_texture[i]);
         icon_sprite.setScale(0.1, 0.1);
-        icon_sprite.setPosition(575 + 100 * i, 875);
+        FloatRect bounds = icon_sprite.getLocalBounds();
+        icon_sprite.setOrigin(bounds.width / 2, bounds.height / 2);
+        icon_sprite.setPosition(600 + 100 * i, 875);
 
-        Text icon_timer = get_text(30, Color::White);
-        icon_timer.setPosition(575 + 100 * i, 825);
-        icon_timer.setString("A");
-        icon_timer.setFont(this->font);
-
-        this->icons.push_back(std::make_pair(icon_sprite, icon_timer));
+        std::pair<Sprite, int> icon = std::make_pair(icon_sprite, i);
+        this->icons.push_back(icon);
     }
 }
 

@@ -31,7 +31,7 @@ private:
 	Text score_text = get_text(score_font_size, Color::White);
 	Text start_text = get_text(start_font_size, Color::Red);
 	bool game_start = 1;
-	std::vector<std::pair<Sprite, Text>> icons;
+	std::vector<std::pair<Sprite, int>> icons;
 	
 
 	void keep_mouse_in_bound();

@@ -109,6 +109,19 @@ Wall Player::get_wall() const
 	return this->player_wall;
 }
 
+Ability Player::get_abilities(const int id)
+{
+	switch (id)
+	{
+	case 0:
+		return this->shoot;
+	case 1:
+		return this->wall;
+	case 2:
+		return this->dash;
+	}
+}
+
 bool Ability::check_CD(const Time& game_time) // Check if an ability's cooldown is up
 {
 	if (game_time - this->timer >= this->CD)  //Check if enough time has passes
