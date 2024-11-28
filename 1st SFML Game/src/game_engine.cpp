@@ -1,5 +1,5 @@
 #include "game_engine.h"
-#include <iostream>
+#include <iomanip>
 
 Text get_text(const int font_size, Color color)
 {
@@ -32,13 +32,20 @@ void Game_engine::draw_icons()
 
         Ability ability = this->player.get_abilities(ability_id);
         if (!ability.is_up) { 
-            icon.setColor(Color(105, 105, 105)); }
+            icon.setColor(Color(105, 105, 105));
+            this->game_wn.draw(icon);
 
-        else { 
-            icon.setColor(Color::White); 
+            Text icon_timer = get_text(30, Color::White);
+            Time time = ability.CD - (this->game_timer.getElapsedTime() - ability.timer);
+            std::string time_string = std::to_string(((float)time.asSeconds()));
+            time_string.resize(4);
+            this->draw_text(icon_timer, time_string, icon.getPosition());
         }
 
-        this->game_wn.draw(icon);
+        else {
+            icon.setColor(Color::White);
+            this->game_wn.draw(icon);
+        }
     }
 }
 
