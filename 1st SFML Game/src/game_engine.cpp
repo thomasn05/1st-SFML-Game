@@ -32,18 +32,18 @@ void Game_engine::draw_icons()
 
         Ability ability = this->player.get_abilities(ability_id);
         if (!ability.is_up) { 
-            icon.setColor(Color(105, 105, 105));
+            icon.setColor(Color(105, 105, 105)); //Color for when ability is on CD
             this->game_wn.draw(icon);
 
             Text icon_timer = get_text(30, Color::White);
-            Time time = ability.CD - (this->game_timer.getElapsedTime() - ability.timer);
+            Time time = ability.CD - (this->game_timer.getElapsedTime() - ability.timer); //Find time until the ability is up again
             std::string time_string = std::to_string(((float)time.asSeconds()));
-            time_string.resize(4);
+            time_string.resize(4); //4 because we want three significant figures (0.00)
             this->draw_text(icon_timer, time_string, icon.getPosition());
         }
 
         else {
-            icon.setColor(Color::White);
+            icon.setColor(Color::White); //Return to normal if it is up
             this->game_wn.draw(icon);
         }
     }
@@ -77,7 +77,7 @@ void Game_engine::run()
         if (!player.is_dead())
         {
             player.update(this->game_wn, this->game_timer.getElapsedTime());
-            //e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
+            e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
             this->draw_icons();
 
         }

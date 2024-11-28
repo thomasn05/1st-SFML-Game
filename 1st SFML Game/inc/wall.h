@@ -32,6 +32,10 @@ public:
     */
     void update(RenderWindow& wn, Time time_elasped);
 
+    /*
+    * @brief check if other has hit the wall
+    * @param other: another Entity
+    */
     bool check_hit(Entity& other) const;
 };
 

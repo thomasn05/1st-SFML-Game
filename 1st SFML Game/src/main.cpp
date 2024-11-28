@@ -1,6 +1,6 @@
 #include "game_engine.h"
 
-const std::string abilities_img[3] = { "rsc\\Q-Icon.png", "rsc\\W-Icon.png", "rsc\\E-Icon.png" };
+const std::string abilities_img[3] = { "rsc\\Q-Icon.png", "rsc\\W-Icon.png", "rsc\\E-Icon.png" }; //@brief the texture for the abilities icon
 
 int main()
 {
@@ -8,7 +8,7 @@ int main()
     window.setFramerateLimit(60);
     Clock game_timer;
     Font font;
-    std::vector<Texture> icons;
+    std::vector<Texture> icons; //@brief vector storing the textures
     if (!font.loadFromFile("rsc\\arial.ttf")) { return -1; }
 
     for (size_t i = 0; i < 3; i++)

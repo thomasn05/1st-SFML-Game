@@ -41,6 +41,10 @@ private:
     Ability dash = {DASH_CD }; // @brief represent player's dash ability
     Ability wall = {WALL_CD }; // @brief represent player's wall ability
 
+    /*
+    * @brief update all ability timers
+    * param game_time: the time of the game
+    */
     void update_abilities(Time game_time);
 
 public:
@@ -80,8 +84,15 @@ public:
     */
     std::vector<Bullet>& get_bullets();
 
+    /*
+    * @brief get the wall object of player
+    */
     Wall get_wall() const;
 
+    /*
+    * @brief get the player's ability based on id
+    * @brief 0: Shoot, 1: Wall, 2: Dash
+    */
     Ability get_abilities(const int id);
 };
 
