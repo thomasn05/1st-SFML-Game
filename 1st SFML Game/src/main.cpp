@@ -17,11 +17,8 @@ int main()
         if (!texture.loadFromFile(abilities_img[i])) { return -1; }
         else { icons.push_back(texture); }
     }
-
-    Player player(player_spawn);
-    EnemyManager e_manager(player);
     
-    Game_engine game_engine(window, font, player, e_manager, icons);
+    Game_engine game_engine(window, font, icons);
 
     while (window.isOpen())
     {

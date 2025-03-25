@@ -30,12 +30,12 @@ private:
 	RenderWindow& game_wn;
 	Clock game_timer;
 	Font font;
-	Player& player = player;
-	EnemyManager& e_manager;
+	Player player;
+	EnemyManager e_manager;
 	Text end_text = get_text(end_game_font_size, Color::Red); //@brief the "GAME OVER" text
 	Text score_text = get_text(score_font_size, Color::White); //@breif score text
 	Text start_text = get_text(start_font_size, Color::Red); //@brief star screen text
-	bool game_start = 1;
+	bool game_start = 0;
 	std::vector<std::pair<Sprite, int>> icons; //@brief vector storing the abilities icon {Icon_Sprite, ability id}
 
 	/*
@@ -63,12 +63,14 @@ private:
 	void draw_icons();
 
 public:
-	Game_engine(RenderWindow& game_wn, const Font font, Player& player, EnemyManager& e_manager, const std::vector<Texture>& icons_texture);
+	Game_engine(RenderWindow& game_wn, const Font font, const std::vector<Texture>& icons_texture);
 	~Game_engine() = default;
 
 	/*
 	* @brief run the game
 	*/
 	void run();
+
+
 
 };

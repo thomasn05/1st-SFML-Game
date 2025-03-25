@@ -18,6 +18,7 @@ public:
 	* @param player: The player object is used to get its position and bullets
 	*/
 	EnemyManager(Player &player) : player(player) {}
+	EnemyManager& operator=(const EnemyManager& other) { return *this; }
 
 	/*
 	* @brief Create new enemy on the screen at set interval and check for their collision with the player and its bullets

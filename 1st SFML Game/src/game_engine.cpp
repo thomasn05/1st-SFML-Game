@@ -49,7 +49,7 @@ void Game_engine::draw_icons()
     }
 }
 
-Game_engine::Game_engine(RenderWindow& game_wn, const Font font, Player& player, EnemyManager& e_manager, const std::vector<Texture>& icons_texture) : game_wn(game_wn), font(font), player(player), e_manager(e_manager)
+Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vector<Texture>& icons_texture) : game_wn(game_wn), font(font), player(player), e_manager(e_manager)
 {
     for (size_t i = 0; i < icons_texture.size(); i++)
     {
@@ -67,7 +67,7 @@ Game_engine::Game_engine(RenderWindow& game_wn, const Font font, Player& player,
 
 void Game_engine::run()
 {
-    if (!this->game_start) { this->draw_text(start_text, "GAME!", start_text_pos); }
+    if (!this->game_start) { this->draw_text(start_text, "League Shooter!", start_text_pos); }
 
     else {
         this->keep_mouse_in_bound();
@@ -79,7 +79,6 @@ void Game_engine::run()
             player.update(this->game_wn, this->game_timer.getElapsedTime());
             e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
             this->draw_icons();
-
         }
         else { this->draw_text(end_text, "GAME OVER!", end_text_spawn); }
     }
