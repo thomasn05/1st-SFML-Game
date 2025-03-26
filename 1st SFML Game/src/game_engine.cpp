@@ -95,8 +95,7 @@ void Game_engine::run()
             this->draw_score(Vector2f(title_spawn.x, title_spawn.y - 75));
 
             button.setTexture(buttons.second);
-            button.setOrigin(get_center(button));
-            button.setPosition(button_pos);
+            button.setPosition(Vector2f(button_pos.x + 40, button_pos.y));
 
             this->game_wn.draw(button);
             if (button_clicked()) {
