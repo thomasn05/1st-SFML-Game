@@ -152,3 +152,26 @@ Ability& Ability::operator=(const Ability& other)
 
 	return *this;
 }
+
+Player& Player::operator=(const Player& other)
+{
+	if (this != &other)
+	{
+		Entity::operator=(other);
+
+		this->lifespan = other.lifespan;
+
+		this->target_pos = other.target_pos;
+		this->speed = other.speed;
+		this->dashing = other.dashing;
+
+		this->bullets = other.bullets;
+		this->player_wall = other.player_wall;
+
+		this->shoot = other.shoot;
+		this->dash = other.dash;
+		this->wall = other.wall;
+	}
+
+	return *this;
+}

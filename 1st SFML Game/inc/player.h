@@ -58,6 +58,8 @@ public:
 
     ~Player() { delete target_pos; }
 
+    Player& operator=(const Player& other);
+
     /*
     * @brief update the player movement and their abilities (dash, shoot, wall)
     * @param wn: the window to draw the player on

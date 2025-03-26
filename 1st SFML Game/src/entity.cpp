@@ -10,6 +10,17 @@ Entity::Entity(const Vector2f& position, const Vector2f& size, const Color color
 	this->object.setRotation(angle);
 }
 
+Entity& Entity::operator=(const Entity& other)
+{
+	if (this != &other)
+	{
+		this->lifespan = other.lifespan;
+		this->object = other.object;
+	}
+
+	return *this;
+}
+
 void Entity::move(const Vector2i& target, const int speed)
 {
 	Vector2f curr_pos = this->object.getPosition();

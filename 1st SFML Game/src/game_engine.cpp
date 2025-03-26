@@ -93,10 +93,17 @@ void Game_engine::run()
         else { 
             this->draw_text(title, end_str, title_spawn); 
             this->draw_score(Vector2f(title_spawn.x, title_spawn.y - 75));
+
             button.setTexture(buttons.second);
+            button.setOrigin(get_center(button));
+            button.setPosition(button_pos);
+
             this->game_wn.draw(button);
-           /* if (button_clicked()) {
-            }*/
+            if (button_clicked()) {
+                this->player = Player(player_spawn);
+                this->e_manager = EnemyManager();
+                std::cout << player.is_dead();
+            }
         }
     }
 }

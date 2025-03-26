@@ -1,5 +1,16 @@
 #include "wall.h"
 
+Wall& Wall::operator=(const Wall& other)
+{
+	if (this != &other)
+	{
+		Entity::operator=(other);
+		this->target_pos = other.target_pos;
+	}
+
+	return *this;
+}
+
 void Wall::set_target(const Vector2i& new_pos)
 {
 	this->target_pos = new_pos;

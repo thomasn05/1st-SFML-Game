@@ -3,7 +3,6 @@
 #pragma once
 class Entity
 {
-
 public:
 	Time lifespan = seconds(1); // @brief lifewspan of an object
 
@@ -19,6 +18,8 @@ public:
 	*/
 	Entity(const Vector2f& position, const Vector2f& size, const Color color, const float angle = 0);
 	~Entity() = default; //Destructor
+
+	Entity& operator=(const Entity& other);
 
 	/*
 	*@brief move the Entity towards a specific target

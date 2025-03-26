@@ -10,7 +10,7 @@ class Wall :
     public Entity
 {
 private:
-    int speed = WALL_SPEED; //@brief wall speed
+    int speed = WALL_SPEED; //@brief wall speed 
     Vector2i target_pos; //@brief where the wall will end u
 
 public:
@@ -19,6 +19,7 @@ public:
     * @param host: the Entity that created the wall
     */
     Wall(const Entity& host) : Entity(host.object.getPosition(), WALL_SIZE, Color::Blue) { this->kill(); }
+    Wall& operator=(const Wall& other);
 
     /*
     * @brief change the target_pos of the wall
