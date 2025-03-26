@@ -49,12 +49,13 @@ void Game_engine::draw_icons()
     }
 }
 
-Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vector<Texture>& icons_texture) : game_wn(game_wn), font(font), player(player), e_manager(e_manager)
+Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vector<Texture>& textures) : game_wn(game_wn), font(font), player(player), e_manager(e_manager)
 {
-    for (size_t i = 0; i < icons_texture.size(); i++)
+    size_t i = 0;
+    for (; i < 3; i++)
     {
         Sprite icon_sprite;
-        icon_sprite.setTexture(icons_texture[i]);
+        icon_sprite.setTexture(textures[i]);
         icon_sprite.setScale(0.1, 0.1);
         FloatRect bounds = icon_sprite.getLocalBounds();
         icon_sprite.setOrigin(bounds.width / 2, bounds.height / 2);
@@ -63,11 +64,16 @@ Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vect
         std::pair<Sprite, int> icon = std::make_pair(icon_sprite, i);
         this->icons.push_back(icon);
     }
+
+    button.setTexture(textures[i]);
 }
 
 void Game_engine::run()
 {
-    if (!this->game_start) { this->draw_text(start_text, "League Shooter!", start_text_pos); }
+    if (!this->game_start) { 
+        this->draw_text(title, "League Shooter!", start_text_pos);
+        this->game_wn.draw(button);
+    }
 
     else {
         this->keep_mouse_in_bound();
@@ -80,7 +86,7 @@ void Game_engine::run()
             e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
             this->draw_icons();
         }
-        else { this->draw_text(end_text, "GAME OVER!", end_text_spawn); }
+        else { this->draw_text(title, "GAME OVER!", end_text_spawn); }
     }
 }
 

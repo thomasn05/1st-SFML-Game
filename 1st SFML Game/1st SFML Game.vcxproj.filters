@@ -77,6 +77,9 @@
     <Image Include="rsc\W-Icon.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="rsc\play_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="rsc\arial.ttf">
