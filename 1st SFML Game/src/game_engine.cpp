@@ -16,8 +16,7 @@ void Game_engine::draw_text(Text& text, const std::string msg, Vector2f pos)
     text.setFont(this->font);
     text.setString(msg);
 
-    FloatRect bounds = text.getLocalBounds();
-    text.setOrigin(Vector2f(bounds.width / 2, bounds.height / 2));
+    text.setOrigin(get_center(text));
     text.setPosition(pos);
 
     this->game_wn.draw(text);
@@ -49,16 +48,15 @@ void Game_engine::draw_icons()
     }
 }
 
-Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vector<Texture>& textures) : game_wn(game_wn), font(font), player(player), e_manager(e_manager)
+Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vector<Texture>& textures) : game_wn(game_wn), font(font)
 {
     size_t i = 0;
     for (; i < 3; i++)
     {
         Sprite icon_sprite;
         icon_sprite.setTexture(textures[i]);
-        icon_sprite.setScale(0.1, 0.1);
-        FloatRect bounds = icon_sprite.getLocalBounds();
-        icon_sprite.setOrigin(bounds.width / 2, bounds.height / 2);
+        icon_sprite.setScale(0.1f, 0.1f);
+        icon_sprite.setOrigin(get_center(icon_sprite));
         icon_sprite.setPosition(600 + 100 * i, 875);
 
         std::pair<Sprite, int> icon = std::make_pair(icon_sprite, i);
@@ -66,6 +64,8 @@ Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vect
     }
 
     button.setTexture(textures[i]);
+    button.setOrigin(get_center(button));
+    button.setPosition(button_pos);
 }
 
 void Game_engine::run()
@@ -73,6 +73,8 @@ void Game_engine::run()
     if (!this->game_start) { 
         this->draw_text(title, "League Shooter!", start_text_pos);
         this->game_wn.draw(button);
+        Vector2f mouse_pos = (Vector2f)Mouse::getPosition(this->game_wn);
+        this->game_start = button.getGlobalBounds().contains(mouse_pos) && Mouse::isButtonPressed(Mouse::Left);
     }
 
     else {

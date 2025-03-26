@@ -19,8 +19,7 @@ const Vector2f score_pos = Vector2f(150, 75); //@brief position of the score tex
 const int start_font_size = 100; //@brief size of the game Title for start screen
 const Vector2f start_text_pos = Vector2f(center.x, center.y - 75); //@brief position of game title for start screen
 
-const Vector2f button_pos = Vector2f(center.x, center.y + 50);
-const Vector2f button_size = Vector2f(200, 60);
+const Vector2f button_pos = Vector2f(center.x, center.y + 25);
 
 /*
 * @brief create a text object with given size and color
@@ -35,8 +34,8 @@ private:
 	RenderWindow& game_wn;
 	Clock game_timer;
 	Font font;
-	Player player;
-	EnemyManager e_manager;
+	Player player = Player(player_spawn);
+	EnemyManager e_manager = EnemyManager(player);
 	Sprite button;
 	Text title = get_text(end_game_font_size, Color::Red); //@brief the "GAME OVER" text
 	Text score_text = get_text(score_font_size, Color::White); //@breif score text
@@ -79,3 +78,9 @@ public:
 
 
 };
+
+template<typename T>
+Vector2f get_center(const T& drawable) {
+	FloatRect bounds = drawable.getLocalBounds();
+	return Vector2f(bounds.left + bounds.width / 2.f, bounds.top + bounds.height / 2.f);
+}
