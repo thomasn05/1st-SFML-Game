@@ -48,7 +48,7 @@ void Game_engine::draw_icons()
     }
 }
 
-Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vector<Texture>& textures) : game_wn(game_wn), font(font)
+Game_engine::Game_engine(RenderWindow& game_wn, const Font& font, const std::vector<Texture>& textures) : game_wn(game_wn), font(font)
 {
     size_t i = 0;
     for (; i < 3; i++)
@@ -71,7 +71,7 @@ Game_engine::Game_engine(RenderWindow& game_wn, const Font font, const std::vect
 void Game_engine::run()
 {
     if (!this->game_start) { 
-        this->draw_text(title, "League Shooter!", start_text_pos);
+        this->draw_text(title, name, title_spawn);
         this->game_wn.draw(button);
         Vector2f mouse_pos = (Vector2f)Mouse::getPosition(this->game_wn);
         this->game_start = button.getGlobalBounds().contains(mouse_pos) && Mouse::isButtonPressed(Mouse::Left);
@@ -80,15 +80,17 @@ void Game_engine::run()
     else {
         this->keep_mouse_in_bound();
 
-        this->draw_score();
-
         if (!player.is_dead())
         {
+            this->draw_score();
             player.update(this->game_wn, this->game_timer.getElapsedTime());
             e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
             this->draw_icons();
         }
-        else { this->draw_text(title, "GAME OVER!", end_text_spawn); }
+        else { 
+            this->draw_text(title, end_str, title_spawn); 
+            this->draw_score(Vector2f(title_spawn.x, title_spawn.y - 75));
+        }
     }
 }
 
@@ -102,9 +104,9 @@ void Game_engine::keep_mouse_in_bound()
 }
 
 
-void Game_engine::draw_score()
+void Game_engine::draw_score(Vector2f pos)
 {
     std::string score = "SCORE: " + std::to_string(this->e_manager.get_enemies_killed() * 10);
-    this->draw_text(score_text, score, score_pos);
+    this->draw_text(score_text, score, pos);
 }
 

@@ -10,14 +10,13 @@ const int win_height = 1000;
 const Vector2f center = Vector2f(win_width / 2, win_height / 2);
 const Vector2f player_spawn = center; // @brief location of player starting position
 
-const int end_game_font_size = 100; // @brief size of end_game_text
-const Vector2f end_text_spawn = Vector2f(center.x, center.y - 50); // @brief the pos of the "Game Over!" text
+const int title_font_size = 100; 
+const Vector2f title_spawn = Vector2f(center.x, center.y - 75);
+const std::string name = "League SHooter";
+const std::string end_str = "GAME OVER!";
 
-const int score_font_size = 50; //@brief the size of the score text
-const Vector2f score_pos = Vector2f(150, 75); //@brief position of the score text
-
-const int start_font_size = 100; //@brief size of the game Title for start screen
-const Vector2f start_text_pos = Vector2f(center.x, center.y - 75); //@brief position of game title for start screen
+const int score_font_size = 50; 
+const Vector2f score_pos = Vector2f(150, 75); 
 
 const Vector2f button_pos = Vector2f(center.x, center.y + 25);
 
@@ -37,7 +36,7 @@ private:
 	Player player = Player(player_spawn);
 	EnemyManager e_manager = EnemyManager(player);
 	Sprite button;
-	Text title = get_text(end_game_font_size, Color::Red); //@brief the "GAME OVER" text
+	Text title = get_text(title_font_size, Color::Red); //@brief the "GAME OVER" text
 	Text score_text = get_text(score_font_size, Color::White); //@breif score text
 	bool game_start = 0;
 	std::vector<std::pair<Sprite, int>> icons; //@brief vector storing the abilities icon {Icon_Sprite, ability id}
@@ -50,7 +49,7 @@ private:
 	/*
 	* @brief calculate the score and draw it on screen
 	*/
-	void draw_score();
+	void draw_score(Vector2f pos = score_pos);
 
 	/*
 	* @brief draw a given text object on screen
@@ -67,7 +66,7 @@ private:
 	void draw_icons();
 
 public:
-	Game_engine(RenderWindow& game_wn, const Font font, const std::vector<Texture>& textures);
+	Game_engine(RenderWindow& game_wn, const Font& font, const std::vector<Texture>& textures);
 	~Game_engine() = default;
 
 	/*
