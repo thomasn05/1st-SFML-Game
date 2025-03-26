@@ -24,6 +24,8 @@ struct Ability
     * @return True if it is up
     */
     bool check_CD(const Time& game_time);
+
+    Ability& operator=(const Ability& other);
 };
 
 class Player :
@@ -53,6 +55,8 @@ public:
     * @param spawn: the starting location of the player
     */
     Player(const Vector2f& spawn) : Entity(spawn, Vector2f(25, 25), Color::Green) {} //Constructor 
+
+    ~Player() { delete target_pos; }
 
     /*
     * @brief update the player movement and their abilities (dash, shoot, wall)

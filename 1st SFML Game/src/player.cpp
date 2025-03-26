@@ -149,4 +149,6 @@ Ability& Ability::operator=(const Ability& other)
 		this->timer = other.timer;
 		this->is_up = other.is_up;
 	}
+
+	return *this;
 }

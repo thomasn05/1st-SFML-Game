@@ -1,5 +1,6 @@
 #include "game_engine.h"
 #include <iomanip>
+#include <iostream>
 
 Text get_text(const int font_size, Color color)
 {
@@ -63,7 +64,10 @@ Game_engine::Game_engine(RenderWindow& game_wn, const Font& font, const std::vec
         this->icons.push_back(icon);
     }
 
-    button.setTexture(textures[i]);
+    buttons.first = textures[i];
+    buttons.second = textures[i + 1];
+
+    button.setTexture(buttons.first); 
     button.setOrigin(get_center(button));
     button.setPosition(button_pos);
 }
@@ -73,8 +77,7 @@ void Game_engine::run()
     if (!this->game_start) { 
         this->draw_text(title, name, title_spawn);
         this->game_wn.draw(button);
-        Vector2f mouse_pos = (Vector2f)Mouse::getPosition(this->game_wn);
-        this->game_start = button.getGlobalBounds().contains(mouse_pos) && Mouse::isButtonPressed(Mouse::Left);
+        this->game_start = button_clicked();
     }
 
     else {
@@ -84,14 +87,24 @@ void Game_engine::run()
         {
             this->draw_score();
             player.update(this->game_wn, this->game_timer.getElapsedTime());
-            e_manager.update(this->game_wn, this->game_timer.getElapsedTime());
+            e_manager.update(this->game_wn, this->game_timer.getElapsedTime(), player);
             this->draw_icons();
         }
         else { 
             this->draw_text(title, end_str, title_spawn); 
             this->draw_score(Vector2f(title_spawn.x, title_spawn.y - 75));
+            button.setTexture(buttons.second);
+            this->game_wn.draw(button);
+           /* if (button_clicked()) {
+            }*/
         }
     }
+}
+
+bool Game_engine::button_clicked()
+{
+    Vector2f mouse_pos = (Vector2f)Mouse::getPosition(this->game_wn);
+    return button.getGlobalBounds().contains(mouse_pos) && Mouse::isButtonPressed(Mouse::Left);
 }
 
 void Game_engine::keep_mouse_in_bound()

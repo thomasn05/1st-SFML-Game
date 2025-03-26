@@ -34,11 +34,12 @@ private:
 	Clock game_timer;
 	Font font;
 	Player player = Player(player_spawn);
-	EnemyManager e_manager = EnemyManager(player);
+	EnemyManager e_manager = EnemyManager();
 	Sprite button;
-	Text title = get_text(title_font_size, Color::Red); //@brief the "GAME OVER" text
-	Text score_text = get_text(score_font_size, Color::White); //@breif score text
+	Text title = get_text(title_font_size, Color::Red); 
+	Text score_text = get_text(score_font_size, Color::White);
 	bool game_start = 0;
+	std::pair<Texture, Texture> buttons;
 	std::vector<std::pair<Sprite, int>> icons; //@brief vector storing the abilities icon {Icon_Sprite, ability id}
 
 	/*
@@ -74,8 +75,7 @@ public:
 	*/
 	void run();
 
-
-
+	bool button_clicked();
 };
 
 template<typename T>

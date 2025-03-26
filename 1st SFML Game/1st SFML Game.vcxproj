@@ -43,6 +43,7 @@
     <Image Include="rsc\E-Icon.png" />
     <Image Include="rsc\play_button.png" />
     <Image Include="rsc\Q-Icon.png" />
+    <Image Include="rsc\replay.png" />
     <Image Include="rsc\W-Icon.png" />
   </ItemGroup>
   <ItemGroup>
