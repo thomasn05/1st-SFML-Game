@@ -3,8 +3,8 @@
 
 #pragma once
 const int PLAYER_SPEED = 5;
-const int DASH_SPEED = 10;
-const int DASH_DISTANCE = 70;
+const int DASH_SPEED = 20;
+const int DASH_DISTANCE = 100;
 const Time SHOOT_CD = milliseconds(500);
 const Time DASH_CD = seconds(3);
 const Time WALL_CD = seconds(7);
