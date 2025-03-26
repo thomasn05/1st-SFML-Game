@@ -140,3 +140,13 @@ bool Ability::check_CD(const Time& game_time) // Check if an ability's cooldown 
 
 	return this->is_up;
 }
+
+Ability& Ability::operator=(const Ability& other)
+{
+	if (this != &other)
+	{
+		this->CD = other.CD;
+		this->timer = other.timer;
+		this->is_up = other.is_up;
+	}
+}
