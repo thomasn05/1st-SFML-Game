@@ -4,3 +4,5 @@ Q - Shoot
 W - Wall
 E - Dash
 Right click - move 
+
+Download Page - https://thomasn05.itch.io/shooting-game
