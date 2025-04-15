@@ -3,6 +3,7 @@ Control:
 Q - Shoot 
 W - Wall
 E - Dash
-Right click - move 
+Right click - move
+Escape - Quit
 
 Download Page - https://thomasn05.itch.io/shooting-game
