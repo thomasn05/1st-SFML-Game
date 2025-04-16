@@ -12,7 +12,7 @@ const Vector2f player_spawn = center; // @brief location of player starting posi
 
 const int title_font_size = 100; 
 const Vector2f title_spawn = Vector2f(center.x, center.y - 75);
-const std::string name = "League SHooter";
+const std::string name = "League Shooter";
 const std::string end_str = "GAME OVER!";
 
 const int score_font_size = 50; 

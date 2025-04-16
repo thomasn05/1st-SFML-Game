@@ -55,6 +55,7 @@
     <ProjectGuid>{17885c8f-3f97-4e2f-b8df-6fe0459a9248}</ProjectGuid>
     <RootNamespace>_1st_SFML_Game</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>League Shooter</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
