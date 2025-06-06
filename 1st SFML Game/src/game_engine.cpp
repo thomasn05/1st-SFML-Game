@@ -120,9 +120,9 @@ Game_engine::Game_engine(RenderWindow& game_wn, const Font& font, const std::vec
     {
         Sprite instruc_sprite;
         instruc_sprite.setTexture(textures[i + j]);
-        instruc_sprite.setScale(2, 2);
+        instruc_sprite.setScale(2.3f, 2.3f);
         instruc_sprite.setOrigin(get_center(instruc_sprite));
-        instruc_sprite.setPosition(275 + 275 * j, 450);
+        instruc_sprite.setPosition(250 + 300 * j, 450);
 
         this->instruction_sprites.push_back(instruc_sprite);
     }
@@ -157,7 +157,7 @@ void Game_engine::keep_mouse_in_bound()
 {
     Vector2i pos = Mouse::getPosition(this->game_wn);
     int x_pos = std::max(0, std::min(win_width, pos.x));
-    int y_pos = std::max(0, std::min(win_height, pos.y));
+    int y_pos = std::max(-25, std::min(win_height, pos.y));
 
     Mouse::setPosition(Vector2i(x_pos, y_pos), this->game_wn);
 }
