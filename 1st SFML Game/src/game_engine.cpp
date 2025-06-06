@@ -53,11 +53,45 @@ void Game_engine::start_screen()
 {
     this->draw_text(title, name, title_spawn);
     this->game_wn.draw(button);
-    this->game_start = button_clicked();
+    this->game_state_id += button_clicked();
 }
 
 void Game_engine::instruction_screen()
 {
+    for (Sprite s : instruction_sprites)
+    {
+        this->game_wn.draw(s);
+    }
+
+    button.setPosition(button.getPosition().x, 650);
+    this->game_wn.draw(button);
+    this->game_state_id += button_clicked();
+}
+
+void Game_engine::main()
+{
+    this->keep_mouse_in_bound();
+
+    if (!player.is_dead())
+    {
+        this->draw_score();
+        player.update(this->game_wn, this->game_timer.getElapsedTime());
+        e_manager.update(this->game_wn, this->game_timer.getElapsedTime(), player);
+        this->draw_icons();
+    }
+    else {
+        this->draw_text(title, end_str, title_spawn);
+        this->draw_score(Vector2f(title_spawn.x, title_spawn.y - 75));
+
+        button.setTexture(buttons.second);
+        button.setPosition(Vector2f(button_pos.x + 40, button_pos.y));
+
+        this->game_wn.draw(button);
+        if (button_clicked()) {
+            this->player = Player(player_spawn);
+            this->e_manager = EnemyManager();
+        }
+    }
 }
 
 Game_engine::Game_engine(RenderWindow& game_wn, const Font& font, const std::vector<Texture>& textures) : game_wn(game_wn), font(font)
@@ -75,46 +109,41 @@ Game_engine::Game_engine(RenderWindow& game_wn, const Font& font, const std::vec
         this->icons.push_back(icon);
     }
 
-    buttons.first = textures[i];
-    buttons.second = textures[i + 1];
+    buttons.first = textures[i++];
+    buttons.second = textures[i++];
 
     button.setTexture(buttons.first); 
     button.setOrigin(get_center(button));
     button.setPosition(button_pos);
+
+    for (size_t j = 0; j < 4; j++)
+    {
+        Sprite instruc_sprite;
+        instruc_sprite.setTexture(textures[i + j]);
+        instruc_sprite.setScale(2, 2);
+        instruc_sprite.setOrigin(get_center(instruc_sprite));
+        instruc_sprite.setPosition(275 + 275 * j, 450);
+
+        this->instruction_sprites.push_back(instruc_sprite);
+    }
 }
 
 void Game_engine::run()
 {
-    if (!this->game_start) { 
-        this->draw_text(title, name, title_spawn);
-        this->game_wn.draw(button);
-        this->game_start = button_clicked();
-    }
-
-    else {
-        this->keep_mouse_in_bound();
-
-        if (!player.is_dead())
-        {
-            this->draw_score();
-            player.update(this->game_wn, this->game_timer.getElapsedTime());
-            e_manager.update(this->game_wn, this->game_timer.getElapsedTime(), player);
-            this->draw_icons();
-        }
-        else { 
-            this->draw_text(title, end_str, title_spawn); 
-            this->draw_score(Vector2f(title_spawn.x, title_spawn.y - 75));
-
-            button.setTexture(buttons.second);
-            button.setPosition(Vector2f(button_pos.x + 40, button_pos.y));
-
-            this->game_wn.draw(button);
-            if (button_clicked()) {
-                this->player = Player(player_spawn);
-                this->e_manager = EnemyManager();
-                std::cout << player.is_dead();
-            }
-        }
+    switch (this->game_state_id)
+    {
+        case 0:
+            this->start_screen();
+            break;
+        case 1:
+            this->instruction_screen();
+            break;
+        case 2:
+            this->main();
+            break;
+    default:
+        this->start_screen();
+        break;
     }
 }
 

@@ -38,9 +38,10 @@ private:
 	Sprite button;
 	Text title = get_text(title_font_size, Color::Red); 
 	Text score_text = get_text(score_font_size, Color::White);
-	bool game_start = 0;
+	signed int game_state_id = 0;
 	std::pair<Texture, Texture> buttons;
 	std::vector<std::pair<Sprite, int>> icons; //@brief vector storing the abilities icon {Icon_Sprite, ability id}
+	std::vector<Sprite>instruction_sprites;
 
 	/*
 	* @brief prevents the mouse from going outside the game window
@@ -75,6 +76,8 @@ private:
 	* @breif explain how to play
 	*/
 	void instruction_screen();
+
+	void main();
 
 public:
 	Game_engine(RenderWindow& game_wn, const Font& font, const std::vector<Texture>& textures);
