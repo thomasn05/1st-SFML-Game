@@ -68,23 +68,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="rsc\E-Icon.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="rsc\Q-Icon.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="rsc\W-Icon.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="rsc\play_button.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="rsc\replay.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <Font Include="rsc\arial.ttf">
       <Filter>Resource Files</Filter>
     </Font>

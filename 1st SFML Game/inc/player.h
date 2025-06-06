@@ -2,7 +2,7 @@
 #include "wall.h"
 
 #pragma once
-const int PLAYER_SPEED = 5;
+const int PLAYER_SPEED = 7;
 const int DASH_SPEED = 20;
 const int DASH_DISTANCE = 100;
 const Time SHOOT_CD = milliseconds(500);

@@ -49,6 +49,17 @@ void Game_engine::draw_icons()
     }
 }
 
+void Game_engine::start_screen()
+{
+    this->draw_text(title, name, title_spawn);
+    this->game_wn.draw(button);
+    this->game_start = button_clicked();
+}
+
+void Game_engine::instruction_screen()
+{
+}
+
 Game_engine::Game_engine(RenderWindow& game_wn, const Font& font, const std::vector<Texture>& textures) : game_wn(game_wn), font(font)
 {
     size_t i = 0;

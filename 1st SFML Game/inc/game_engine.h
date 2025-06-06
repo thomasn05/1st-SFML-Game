@@ -66,6 +66,16 @@ private:
 	*/
 	void draw_icons();
 
+	/*
+	@breif the title screen
+	*/
+	void start_screen();
+
+	/*
+	* @breif explain how to play
+	*/
+	void instruction_screen();
+
 public:
 	Game_engine(RenderWindow& game_wn, const Font& font, const std::vector<Texture>& textures);
 	~Game_engine() = default;
@@ -76,6 +86,7 @@ public:
 	void run();
 
 	bool button_clicked();
+
 };
 
 template<typename T>

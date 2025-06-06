@@ -1,6 +1,6 @@
 #include "game_engine.h"
 
-const std::string sprites[] = { "rsc/Q-Icon.png", "rsc/W-Icon.png", "rsc/E-Icon.png", "rsc/play_button.png", "rsc/replay.png"}; //@brief the texture for the abilities icon
+const std::string sprites[] = { "rsc/icons/Q-Icon.png", "rsc/icons/W-Icon.png", "rsc/icons/E-Icon.png", "rsc/buttons/play_button.png", "rsc/buttons/replay.png"}; //@brief the texture for the abilities icon
 
 int main()
 {
